@@ -1,6 +1,8 @@
 #include "ApplicationManager.h"
 #include "GUI\GUI.h"
 
+int CFigure::counter = 0; //initializing the counter of the ID of the figure
+
 int main()
 {
 	/*

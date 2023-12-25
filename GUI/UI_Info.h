@@ -23,7 +23,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//TODO: Add more items names here
 	//ITM_SELECT,		//select item in menu
 	ITM_SAVE,		//save item in menu
-//ITM_LOAD,		//load item in menu	
+	ITM_LOAD,		//load item in menu	
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

@@ -43,5 +43,5 @@ public:
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 
-int CFigure::counter = 0; //initializing the counter of the ID of the figure
+
 #endif

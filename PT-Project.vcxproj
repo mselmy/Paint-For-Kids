@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelectFigure.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelectFigure.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />

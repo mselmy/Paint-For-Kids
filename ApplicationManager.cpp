@@ -2,6 +2,7 @@
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionSelectFigure.h"
 #include "Actions\ActionSave.h"
+#include "Actions\ActionLoad.h"
 
 
 //Constructor
@@ -59,9 +60,13 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			///create AddLineAction here
 
 			break;
-			case SAVE:
-				newAct = new ActionSave(this);
-				break;
+		case SAVE:
+			newAct = new ActionSave(this);
+			break;
+
+		case LOAD:
+			newAct = new ActionLoad(this);
+			break;
 
 		case EXIT:
 			///create ExitAction here
