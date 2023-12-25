@@ -35,6 +35,8 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	bool IsAnyFigureSelected(); //Checks if any figure is selected
 	void UnselectAllFigures(); //Unselects all figures on the list
+	int getFigCount() const; //Returns the number of figures
+	void saveAll(ofstream& OutFile); //Saves all figures in a file
 		
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface

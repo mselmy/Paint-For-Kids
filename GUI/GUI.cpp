@@ -86,6 +86,7 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
+			case ITM_SAVE: return SAVE;
 			case ITM_EXIT: return EXIT;	
 			
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -202,6 +203,12 @@ color GUI::getCrntDrawColor() const	//get current drwawing color
 
 color GUI::getCrntFillColor() const	//get current filling color
 {	return UI.FillColor;	}
+//////////////////////////////////////////////////////////////////////////////////////////
+
+color GUI::getBackgroundColor() const //get current background color
+{
+	return UI.BkGrndColor;
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 int GUI::getCrntPenWidth() const		//get current pen width

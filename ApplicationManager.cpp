@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
 #include "Actions\ActionSelectFigure.h"
+#include "Actions\ActionSave.h"
 
 
 //Constructor
@@ -59,6 +60,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 			break;
 			case SAVE:
+				newAct = new ActionSave(this);
 				break;
 
 		case EXIT:
@@ -130,6 +132,21 @@ void ApplicationManager::UnselectAllFigures()
 	for (int i = 0; i < FigCount; i++)
 	{
 		FigList[i]->SetSelected(false);
+	}
+}
+
+// get the number of selected figures
+int ApplicationManager::getFigCount() const
+{
+	return FigCount;
+}
+
+// save all figures in a file
+void ApplicationManager::saveAll(ofstream& OutFile)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(OutFile);
 	}
 }
 //==================================================================================//
