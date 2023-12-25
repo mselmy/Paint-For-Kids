@@ -11,6 +11,7 @@ protected:
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
+	static int counter;	//counter for the ID of the figure
 	
 	/// Add more parameters if needed.
 
@@ -42,4 +43,5 @@ public:
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
 
+int CFigure::counter = 0; //initializing the counter of the ID of the figure
 #endif
