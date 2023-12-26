@@ -33,26 +33,39 @@ void ActionSave::Execute()
 {
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
-
-	//get file name from user
-	pGUI->PrintMessage("Enter file name to save to: ");
-	string fileName = pGUI->GetSrting();
-
-	//check if file name is valid (not empty) and add .txt if not added by user
-	if (fileName.length() == 0)
-	{
-		pGUI->PrintMessage("Saving Canceled");
-		return;
-	}
-	else if (fileName.substr(fileName.length() - 4) != ".txt")
-		fileName += ".txt";
-
-	//open file and save all figures
-	//create ofstream object
 	ofstream outFile;
-	//open file in write mode and truncate it if it already exists
-	outFile.open("Saved_Files/" + fileName, ios::out | ios::trunc);
+	string fileName;
 
+	bool firstTime = true;
+
+	do {
+		if(firstTime)
+		{
+			pGUI->PrintMessage("Enter file name to save to: ");
+			firstTime = false;
+		}
+		else
+		{pGUI->PrintMessage("File name is invalid please try again: ");}
+
+		//get file name from user
+		fileName = pGUI->GetSrting();
+
+		//check if file name is not empty and add .txt if not added by user
+		if (fileName.length() == 0)
+		{
+			pGUI->PrintMessage("Saving is Canceled");
+			return;
+		}
+		else if (fileName.length()<=4 || fileName.substr(fileName.length() - 4) != ".txt")
+			fileName += ".txt";
+
+		//open file and save all figures
+		//create ofstream object
+		//open file in write mode and truncate it if it already exists
+		outFile.open("Saved_Files/" + fileName, ios::out | ios::trunc);
+
+	} while (!outFile.is_open());
+	
 	//check if file is open
 	if (outFile.is_open())
 	{

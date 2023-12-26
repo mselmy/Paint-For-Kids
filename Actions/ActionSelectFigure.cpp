@@ -26,7 +26,7 @@ void ActionSelectFigure::Execute()
 	SelectedFigure = pManager->GetFigure(P.x, P.y);
 	if (SelectedFigure == NULL)
 	{
-		pGUI->PrintMessage("No Figure Selected");
+		pGUI->PrintMessage("Unselect all figures");
 		pManager->UnselectAllFigures();
 		return;
 	}
