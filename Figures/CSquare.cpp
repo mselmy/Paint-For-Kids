@@ -43,7 +43,7 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 	TopLeftCorner = P1;
 	length = len;
 }
-	
+
 
 void CSquare::DrawMe(GUI* pGUI) const
 {
@@ -75,55 +75,30 @@ void CSquare::Save(ofstream& OutFile)
 //load the square parameters from the file
 void CSquare::Load(ifstream& Infile)
 {
-		int x, y, len;
+	// Declare variables for x, y, len, drawColorString, and fill
+	int x, y, len;
 	string drawColorString, fill;
-/**
- *
-		string id;
-		cout << "ID: " << ID;
 
-		Infile >> ID;
- */
-		cout << "ID: "<<ID;
-		Infile >> ID;
-		Infile >> TopLeftCorner.x;
-		Infile >> TopLeftCorner.y;
-		Infile >> length;
-		Infile >> drawColorString >> fill;
+	// Read values from the file into object data members
+	Infile >> ID;
+	Infile >> TopLeftCorner.x;
+	Infile >> TopLeftCorner.y;
+	Infile >> length;
+	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
-	cout<<"\nID: "<<ID;
-	cout<< "\nTopLeftCorner.x: "<<TopLeftCorner.x;
-	cout<< "\nTopLeftCorner.y: "<<TopLeftCorner.y;
-	cout<< "\n length: "<<length;
-		cout<< "\n color: "<< drawColorString;
-		cout<< "\n fill: "<<fill;
-		 stringToColor(drawColorString);
-
+	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
 	FigGfxInfo.DrawClr = stringToColor(drawColorString);
+
+	// Check if the fill is "NO_FILL"
 	if (fill == "NO_FILL") {
 		FigGfxInfo.isFilled = false;
-		FigGfxInfo.FillClr = NULL;// stringToColor(drawColorString);
+		FigGfxInfo.FillClr = NULL;
 	}
 	else
 	{
+		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
 		FigGfxInfo.isFilled = true;
 		FigGfxInfo.FillClr = stringToColor(fill);
 	}
-	//FigGfxInfo.BorderWdth sent current from appmanager (GUI) if we want other border width change save and load
-	/*
-	 *fill color  = (255,255,255)
-	 *r = 255 , g = 255 , b = 255
-	 *better use a function to convert string to color
-	 *even better use enum for colors
-	 *
-	 *
-		color FillColor;
-		FillColor.ucRed = r;
-		FillColor.ucGreen = g;
-		FillColor.ucBlue = b;
-		FigGfxInfo.FillClr = FillColor;
-		FigGfxInfo.isFilled = true;
-	 *
-	 */
 }
 

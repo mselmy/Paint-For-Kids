@@ -37,11 +37,11 @@ public:
 	void UnselectAllFigures(); //Unselects all figures on the list
 	int getFigCount() const; //Returns the number of figures
 	void saveAll(ofstream& OutFile); //Saves all figures in a file
-	void loadAll(ifstream& InFile); //Loads all figures from a file
 		
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window
+	void reset(); //Resets the application and deletes all figures/
 
 };
 

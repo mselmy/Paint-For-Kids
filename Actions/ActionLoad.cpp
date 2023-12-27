@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <string>
 
+#include "../Figures/CSquare.h"
+
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
 
@@ -17,7 +19,7 @@ void ActionLoad::Execute()
 	pGUI->PrintMessage("Enter file name to load from: ");
 
 	//get file name from user
-	pGUI->PrintMessage("Enter file name to save to: ");
+
 	string fileName = pGUI->GetSrting();
 
 	//check if user canceled
@@ -26,15 +28,17 @@ void ActionLoad::Execute()
 		pGUI->PrintMessage("Loading is Canceled");
 		return;
 	}
-	//else if (fileName.substr(fileName.length() - 4) != ".txt")
+	 if (fileName.length() < 4||fileName.substr(fileName.length() - 4) != ".txt")
+	 {
 		fileName += ".txt";
+	 }
 
 	//open file
-	ifstream infile;
-	infile.open("Saved_Files/" + fileName, ios::in);
+	ifstream inFile;
+	inFile.open("Saved_Files/" + fileName, ios::in);
 
 	//check if file is open
-	if (!infile.is_open())
+	if (!inFile.is_open())
 	{
 		pGUI->PrintMessage("Error: File not found");
 		return;
@@ -42,14 +46,48 @@ void ActionLoad::Execute()
 
 
 	//load data
-	
-	pManager->loadAll(infile);
+	string  drawColor, fillColor, bgColor;
+
+	inFile >> drawColor >> fillColor >> bgColor;//read header data
+	//set current colors to GUI
+		
+	int figCount;
+	inFile >> figCount;//read fig count
+
+
+	//FigCount = figCount;//set fig count
+	//initialize paramters
+	int figType = -1;
+	CFigure* figure = nullptr;
+	Point p;
+	p.x = 0;
+	p.y = 0;
+
+	GfxInfo SqrGfxInfo;
+	SqrGfxInfo.isFilled = false;
+	SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
+	SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
+	SqrGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
+
+	pManager->reset();//reset all figures
+
+	for (int i = 0; i < figCount; i++)
+	{
+
+		inFile >> figType;
+		switch (figType)
+		{
+		case SQUARE:
+			figure = new CSquare(p, 1, SqrGfxInfo);
+			break;
+		}
+		figure->Load(inFile);
+		pManager->AddFigure(figure);
+	}
 
 	//close file
-	infile.close();
+	inFile.close();
 
-		pGUI->PrintMessage("Loading is done");
-
-
+	pGUI->PrintMessage("Loading is done");
 
 }

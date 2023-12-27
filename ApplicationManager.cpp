@@ -13,34 +13,34 @@
 ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
-	pGUI = new GUI;	
-	
+	pGUI = new GUI;
+
 	FigCount = 0;
-		
+
 	//Create an array of figure pointers and set them to NULL		
-	for(int i=0; i<MaxFigCount; i++)
-		FigList[i] = NULL;	
+	for (int i = 0; i < MaxFigCount; i++)
+		FigList[i] = NULL;
 }
 
 void ApplicationManager::Run()
 {
 	ActionType ActType;
 	do
-	{		
+	{
 		//1- Read user action
 		ActType = pGUI->MapInputToActionType();
 
 		//2- Create the corresponding Action
-		Action *pAct = CreateAction(ActType);
-		
+		Action* pAct = CreateAction(ActType);
+
 		//3- Execute the action
 		ExecuteAction(pAct);
 
 		//4- Update the interface
-		UpdateInterface();	
+		UpdateInterface();
 
-	}while(ActType != EXIT);
-	
+	} while (ActType != EXIT);
+
 }
 
 
@@ -48,50 +48,50 @@ void ApplicationManager::Run()
 //								Actions Related Functions							//
 //==================================================================================//
 //Creates an action
-Action* ApplicationManager::CreateAction(ActionType ActType) 
+Action* ApplicationManager::CreateAction(ActionType ActType)
 {
 	Action* newAct = NULL;
-	
-			
+
+
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-		case DRAW_SQUARE:
-			newAct = new ActionAddSquare(this);
-			break;
+	case DRAW_SQUARE:
+		newAct = new ActionAddSquare(this);
+		break;
 
-		case DRAW_ELPS:
-			///create AddLineAction here
+	case DRAW_ELPS:
+		///create AddLineAction here
 
-			break;
-		case SAVE:
-			newAct = new ActionSave(this);
-			break;
+		break;
+	case SAVE:
+		newAct = new ActionSave(this);
+		break;
 
-		case LOAD:
-			newAct = new ActionLoad(this);
-			break;
+	case LOAD:
+		newAct = new ActionLoad(this);
+		break;
 
-		case EXIT:
-			///create ExitAction here
-			
-			break;
-		case DRAWING_AREA:	//a click on the drawing area
-			newAct = new ActionSelectFigure(this);
-			break;
-		
-		case STATUS:	//a click on the status bar ==> no action
-			return NULL;
-			break;
-	}	
+	case EXIT:
+		///create ExitAction here
+
+		break;
+	case DRAWING_AREA:	//a click on the drawing area
+		newAct = new ActionSelectFigure(this);
+		break;
+
+	case STATUS:	//a click on the status bar ==> no action
+		return NULL;
+		break;
+	}
 	return newAct;
 }
 //////////////////////////////////////////////////////////////////////
 //Executes the created Action
-void ApplicationManager::ExecuteAction(Action* &pAct) 
-{	
+void ApplicationManager::ExecuteAction(Action*& pAct)
+{
 	//Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
 		pAct->Execute();//Execute
 		delete pAct;	//Action is not needed any more ==> delete it
@@ -105,20 +105,20 @@ void ApplicationManager::ExecuteAction(Action* &pAct)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+	if (FigCount < MaxFigCount)
+		FigList[FigCount++] = pFig;
 }
 ////////////////////////////////////////////////////////////////////////////////////
-CFigure *ApplicationManager::GetFigure(int x, int y) const
+CFigure* ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
 
 	///Add your code here to search for a figure given a point x,y
-	for (int i = FigCount-1; i >= 0; i--)
+	for (int i = FigCount - 1; i >= 0; i--)
 	{
-		if(FigList[i]->IsPointInside(x, y))
+		if (FigList[i]->IsPointInside(x, y))
 			return FigList[i];
 	}
 
@@ -159,45 +159,16 @@ void ApplicationManager::saveAll(ofstream& OutFile)
 	}
 }
 
-// load all figures from a file
-void ApplicationManager::loadAll(ifstream& InFile)
+
+void ApplicationManager::reset()
 {
-	string  drawColor, fillColor, bgColor;
-	int figCount;
-	InFile >> drawColor >> fillColor >> bgColor >> figCount;//read header data
-	cout << drawColor << fillColor << bgColor;
-	cout << figCount;
-
-	//set them
-	FigCount = figCount;//set fig count
-
-	//pGUI->set ??
-	int figType = -1;
-	CFigure* figure = nullptr;
-		Point p;
-		p.x = 0;
-		p.y = 0;
-
-		GfxInfo SqrGfxInfo;
-		SqrGfxInfo.isFilled = false;	
-		SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
-		SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
-		SqrGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
-
-
-		for (int i = 0; i < FigCount; i++)
-		{
-
-			InFile >> figType;
-			switch(figType)
-			{
-			case SQUARE://need enum for them and maybe for colors too
-				figure = new CSquare(p, 100, SqrGfxInfo);//no default constructor->> dummy data? or default
-				break;
-			}
-			figure->Load(InFile);
-			FigList[i] = figure;
-		}
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+	pGUI->ClearDrawArea();
 }
 //==================================================================================//
 //							Interface Management Functions							//
@@ -205,20 +176,22 @@ void ApplicationManager::loadAll(ifstream& InFile)
 
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
-{	
-	for(int i=0; i<FigCount; i++)
+{
+	for (int i = 0; i < FigCount; i++)
 		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface
-GUI *ApplicationManager::GetGUI() const
-{	return pGUI; }
+GUI* ApplicationManager::GetGUI() const
+{
+	return pGUI;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
+	for (int i = 0; i < FigCount; i++)
 		delete FigList[i];
 	delete pGUI;
-	
+
 }
