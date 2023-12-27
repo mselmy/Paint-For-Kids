@@ -7,5 +7,6 @@ class ActionLoad : public Action
 
 	//Execute action (code depends on action type)
 	virtual void Execute();
+ 	color stringToColor(string s);
 };
 

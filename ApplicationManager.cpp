@@ -3,7 +3,11 @@
 #include "Actions\ActionSelectFigure.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include <fstream>
+#include <iostream>
+#include <iomanip>
 
+#include "Figures/CSquare.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -153,6 +157,47 @@ void ApplicationManager::saveAll(ofstream& OutFile)
 	{
 		FigList[i]->Save(OutFile);
 	}
+}
+
+// load all figures from a file
+void ApplicationManager::loadAll(ifstream& InFile)
+{
+	string  drawColor, fillColor, bgColor;
+	int figCount;
+	InFile >> drawColor >> fillColor >> bgColor >> figCount;//read header data
+	cout << drawColor << fillColor << bgColor;
+	cout << figCount;
+
+	//set them
+	FigCount = figCount;//set fig count
+
+	//pGUI->set ??
+	int figType = -1;
+	CFigure* figure = nullptr;
+		Point p;
+		p.x = 0;
+		p.y = 0;
+
+		GfxInfo SqrGfxInfo;
+		SqrGfxInfo.isFilled = false;	
+		SqrGfxInfo.DrawClr = pGUI->getCrntDrawColor();
+		SqrGfxInfo.FillClr = pGUI->getCrntFillColor();
+		SqrGfxInfo.BorderWdth = pGUI->getCrntPenWidth();
+
+
+		for (int i = 0; i < FigCount; i++)
+		{
+
+			InFile >> figType;
+			switch(figType)
+			{
+			case SQUARE://need enum for them and maybe for colors too
+				figure = new CSquare(p, 100, SqrGfxInfo);//no default constructor->> dummy data? or default
+				break;
+			}
+			figure->Load(InFile);
+			FigList[i] = figure;
+		}
 }
 //==================================================================================//
 //							Interface Management Functions							//

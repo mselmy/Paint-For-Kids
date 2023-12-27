@@ -9,7 +9,6 @@
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
 
-
 void ActionLoad::Execute()
 {
 	//Get a Pointer to the Interface
@@ -27,7 +26,7 @@ void ActionLoad::Execute()
 		pGUI->PrintMessage("Loading is Canceled");
 		return;
 	}
-	else if (fileName.substr(fileName.length() - 4) != ".txt")
+	//else if (fileName.substr(fileName.length() - 4) != ".txt")
 		fileName += ".txt";
 
 	//open file
@@ -41,9 +40,10 @@ void ActionLoad::Execute()
 		return;
 	}
 
+
 	//load data
 	
-	
+	pManager->loadAll(infile);
 
 	//close file
 	infile.close();
