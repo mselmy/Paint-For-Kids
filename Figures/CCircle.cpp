@@ -7,7 +7,6 @@ CCircle::CCircle(Point P1, int _radius, GfxInfo FigureGfxInfo) : CFigure(FigureG
 {
 	center = P1;
 	radius = _radius;
-	
 }
 
 
@@ -47,18 +46,5 @@ void CCircle::Load(ifstream& Infile)	//Load the figure parameters to the file
 	Infile >> drawColorString; //read colors from file into strings first to convert to color later
 	Infile >> fill;
 
-	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	ChngDrawClr(stringToColor(drawColorString));
-
-	// Check if the fill is "NO_FILL"
-	if (fill == "NO_FILL") {
-		FigGfxInfo.isFilled = false;
-		FigGfxInfo.FillClr = NULL;
-	}
-	else
-	{
-		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
-		FigGfxInfo.isFilled = true;
-		ChngFillClr(stringToColor(fill));
-	}
+	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }

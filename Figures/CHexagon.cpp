@@ -8,10 +8,7 @@ CHexagon::CHexagon(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfx
 	BottomRightCorner = P2;
 	VerticalLen = abs(P1.y - P2.y);
 	HorizentalLen = abs(P1.x - P2.x);
-	//ID = newID++;
-
 }
-//CHexagon::CHexagon() {};
 
 
 void CHexagon::DrawMe(GUI* pGUI) const
@@ -22,6 +19,7 @@ void CHexagon::DrawMe(GUI* pGUI) const
 
 bool CHexagon::IsPointInside(int x, int y) const	//whether the point is inside the figure or not
 {
+	// Check if the point is inside the hexagon or not
 	if (x >= TopLeftCorner.x && x <= BottomRightCorner.x && y >= TopLeftCorner.y && y <= BottomRightCorner.y)
 		return true;
 	return false;
@@ -49,17 +47,5 @@ void CHexagon::Load(ifstream& Infile)	//Load the figure parameters to the file
 	Infile >> BottomRightCorner.y;
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
-	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	ChngDrawClr(stringToColor(drawColorString));
-
-	// Check if the fill is "NO_FILL"
-	if (fill == "NO_FILL") {
-		FigGfxInfo.isFilled = false;
-		FigGfxInfo.FillClr = NULL;
-	}
-	else
-	{
-		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
-		ChngFillClr(stringToColor(fill));
-	}
+	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }

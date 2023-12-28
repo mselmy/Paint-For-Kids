@@ -7,7 +7,6 @@ CEllipse::CEllipse(Point _P1, Point _P2, GfxInfo FigureGfxInfo) : CFigure(Figure
 {
 	P1 = _P1;
 	P2 = _P2;
-	
 }
 //CEllipse::CEllipse() {}
 
@@ -56,18 +55,5 @@ void CEllipse::Load(ifstream& Infile)	//Load the figure parameters to the file
 	Infile >> P2.y;
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
-	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	ChngDrawClr(stringToColor(drawColorString));
-
-	// Check if the fill is "NO_FILL"
-	if (fill == "NO_FILL") {
-		FigGfxInfo.isFilled = false;
-		FigGfxInfo.FillClr = NULL;
-	}
-	else
-	{
-		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
-		FigGfxInfo.isFilled = true;
-		ChngFillClr(stringToColor(fill));
-	}
+	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }

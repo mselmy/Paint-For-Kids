@@ -16,8 +16,6 @@ void CSquare::DrawMe(GUI* pGUI) const
 {
 	//Call Output::DrawRect to draw a Square on the screen	
 	pGUI->DrawSquare(TopLeftCorner, length, FigGfxInfo, Selected);
-	
-
 }
 
 // Check if the point is inside the square or not
@@ -53,19 +51,6 @@ void CSquare::Load(ifstream& Infile)
 	Infile >> length;
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
-	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	ChngDrawClr(stringToColor(drawColorString));
-
-	// Check if the fill is "NO_FILL"
-	if (fill == "NO_FILL") {
-		FigGfxInfo.isFilled = false;
-		FigGfxInfo.FillClr = NULL;
-	}
-	else
-	{
-		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
-		FigGfxInfo.isFilled = true;
-		ChngFillClr(stringToColor(fill));
-	}
+	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
 
