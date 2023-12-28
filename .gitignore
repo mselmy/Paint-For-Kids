@@ -456,4 +456,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudio,c++
 
 # ignore saved files
-# Saved_Files/
+Saved_Files/*

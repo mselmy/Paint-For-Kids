@@ -8,6 +8,7 @@
 
 #include "../Figures/CSquare.h"
 #include "../Figures/CCircle.h"
+#include "../Figures/CEllipse.h"
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
@@ -83,6 +84,9 @@ void ActionLoad::Execute()
 			break;
 		case ITM_CIRC:
 			figure = new CCircle(p, 1, SqrGfxInfo);
+			break;
+		case ITM_ELPS:
+			figure = new CEllipse(p, p, SqrGfxInfo);
 			break;
 		}
 		figure->Load(inFile);
