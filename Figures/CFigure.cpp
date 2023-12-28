@@ -22,3 +22,37 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
+color CFigure::stringToColor(string s)
+{
+	int r, g, b;
+	int i = 1;
+	string temp = "";
+	while (s[i] != ',')
+	{
+		temp += s[i];
+		i++;
+	}
+	r = stoi(temp);
+	i++;
+	temp = "";
+	while (s[i] != ',')
+	{
+		temp += s[i];
+		i++;
+	}
+	g = stoi(temp);
+	i++;
+	temp = "";
+	while (s[i] != ')')
+	{
+		temp += s[i];
+		i++;
+	}
+	b = stoi(temp);
+	color c;
+	c.ucRed = r;
+	c.ucGreen = g;
+	c.ucBlue = b;
+	return c;
+}
+

@@ -2,6 +2,8 @@
 #define CSQUARE_H
 
 #include "CFigure.h"
+#include <fstream>
+#include <iostream>
 
 class CSquare : public CFigure
 {
@@ -17,7 +19,6 @@ public:
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file
 
 	void	Load(ifstream& Infile);	//Load the figure parameters to the file
-	color CSquare::stringToColor(string s); // we need to change and color to string aswell
 
 };
 

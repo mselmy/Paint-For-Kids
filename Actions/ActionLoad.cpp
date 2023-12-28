@@ -7,6 +7,7 @@
 #include <string>
 
 #include "../Figures/CSquare.h"
+#include "../Figures/CCircle.h"
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
@@ -77,8 +78,11 @@ void ActionLoad::Execute()
 		inFile >> figType;
 		switch (figType)
 		{
-		case SQUARE:
+		case ITM_SQUR:
 			figure = new CSquare(p, 1, SqrGfxInfo);
+			break;
+		case ITM_CIRC:
+			figure = new CCircle(p, 1, SqrGfxInfo);
 			break;
 		}
 		figure->Load(inFile);

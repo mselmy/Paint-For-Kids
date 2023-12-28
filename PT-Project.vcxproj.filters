@@ -151,6 +151,30 @@
     <ClCompile Include="Actions\ActionLoad.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionAddCircle.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionAddEllipse.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionAddHexagon.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionAddTriangle.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CCircle.cpp">
+      <Filter>Figures Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CEllipse.cpp">
+      <Filter>Figures Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CHexagon.cpp">
+      <Filter>Figures Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CTriangle.cpp">
+      <Filter>Figures Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -243,6 +267,30 @@
     </ClInclude>
     <ClInclude Include="Actions\ActionLoad.h">
       <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddCircle.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddEllipse.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddHexagon.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionAddTriangle.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CCircle.h">
+      <Filter>Figures Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CEllipse.h">
+      <Filter>Figures Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CHexagon.h">
+      <Filter>Figures Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CTriangle.h">
+      <Filter>Figures Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

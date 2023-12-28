@@ -4,39 +4,6 @@
 
 using namespace std;
 
-color CSquare::stringToColor(string s)
-{
-		int r, g, b;
-	int i = 1;
-	string temp = "";
-	while (s[i] != ',')
-	{
-				temp += s[i];
-		i++;
-	}
-	r = stoi(temp);
-	i++;
-	temp = "";
-	while (s[i] != ',')
-	{
-				temp += s[i];
-		i++;
-	}
-	g = stoi(temp);
-	i++;
-	temp = "";
-	while (s[i] != ')')
-	{
-				temp += s[i];
-		i++;
-	}
-	b = stoi(temp);
-	color c;
-	c.ucRed = r;
-	c.ucGreen = g;
-	c.ucBlue = b;
-	return c;
-}
 
 CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -64,7 +31,7 @@ bool CSquare::IsPointInside(int x, int y) const
 // save the square parameters to the file
 void CSquare::Save(ofstream& OutFile)
 {
-	OutFile << endl << SQUARE <<"\t" << ID << "\t" << TopLeftCorner.x << "\t" << TopLeftCorner.y << "\t" << length << "\t";
+	OutFile << endl << ITM_SQUR <<"\t" << ID << "\t" << TopLeftCorner.x << "\t" << TopLeftCorner.y << "\t" << length << "\t";
 	OutFile << "(" << (int)FigGfxInfo.DrawClr.ucRed << "," << (int)FigGfxInfo.DrawClr.ucGreen << "," << (int)FigGfxInfo.DrawClr.ucBlue << ")" << "\t";
 	if (FigGfxInfo.isFilled)
 		OutFile << "(" << (int)FigGfxInfo.FillClr.ucRed << "," << (int)FigGfxInfo.FillClr.ucGreen << "," << (int)FigGfxInfo.FillClr.ucBlue << ")" << endl;

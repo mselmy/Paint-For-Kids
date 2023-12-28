@@ -9,6 +9,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_SQUARE,	//Draw a Square
 	DRAW_ELPS,		//Draw an Ellipse
 	DRAW_HEX,		//Draw a Hexagon
+	DRAW_CIRC,      //DRAW A CIRCLE
+	DRAW_TRA,       //DRAW A TRIANGL
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
 	CHNG_BK_CLR,	//Change background color
@@ -42,10 +44,6 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	bool isFilled;	//Figure Filled or not
 	int BorderWdth;	//Width of figure borders
 
-};
-enum FigureType
-{
-	SQUARE,
 };
 
 #endif

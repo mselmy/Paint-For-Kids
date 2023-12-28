@@ -1,5 +1,9 @@
 #include "ApplicationManager.h"
 #include "Actions\ActionAddSquare.h"
+#include "Actions\ActionAddCircle.h"
+#include "Actions\ActionAddEllipse.h"
+#include "Actions\ActionAddHexagon.h"
+#include "Actions\ActionAddTriangle.h"
 #include "Actions\ActionSelectFigure.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
@@ -61,9 +65,21 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		break;
 
 	case DRAW_ELPS:
-		///create AddLineAction here
-
+		newAct = new ActionAddEllipse(this);
 		break;
+
+	case DRAW_HEX:
+		newAct = new ActionAddHexagon(this);
+		break;
+
+	case DRAW_CIRC:
+		newAct = new ActionAddCircle(this);
+		break;
+
+	case DRAW_TRA:
+		newAct = new ActionAddTriangle(this);
+		break;
+
 	case SAVE:
 		newAct = new ActionSave(this);
 		break;

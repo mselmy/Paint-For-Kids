@@ -129,6 +129,10 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\ActionAddCircle.cpp" />
+    <ClCompile Include="Actions\ActionAddEllipse.cpp" />
+    <ClCompile Include="Actions\ActionAddHexagon.cpp" />
+    <ClCompile Include="Actions\ActionAddTriangle.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelectFigure.cpp" />
@@ -167,14 +171,22 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="Figures\CCircle.cpp" />
+    <ClCompile Include="Figures\CEllipse.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
+    <ClCompile Include="Figures\CHexagon.cpp" />
     <ClCompile Include="Figures\CSquare.cpp" />
     <ClCompile Include="Actions\ActionAddSquare.cpp" />
+    <ClCompile Include="Figures\CTriangle.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actions\ActionAddCircle.h" />
+    <ClInclude Include="Actions\ActionAddEllipse.h" />
+    <ClInclude Include="Actions\ActionAddHexagon.h" />
+    <ClInclude Include="Actions\ActionAddTriangle.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelectFigure.h" />
@@ -198,10 +210,14 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="Figures\CCircle.h" />
+    <ClInclude Include="Figures\CEllipse.h" />
     <ClInclude Include="Figures\CFigure.h" />
+    <ClInclude Include="Figures\CHexagon.h" />
     <ClInclude Include="Figures\CSquare.h" />
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddSquare.h" />
+    <ClInclude Include="Figures\CTriangle.h" />
     <ClInclude Include="GUI\GUI.h" />
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />

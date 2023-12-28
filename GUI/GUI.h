@@ -34,6 +34,12 @@ public:
 	
 	// -- Figures Drawing functions
 	void DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected=false) const;  //Draw a Square
+	void DrawEllipse(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const; //Draw an Ellipse
+	void DrawHexagon(Point P1, Point P2, GfxInfo HexGfxInfo, bool selected) const; //Draw a Hexagon
+	void DrawCircle(Point P1, int _radius, GfxInfo RectGfxInfo, bool selected) const; //Draw a Circle
+	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo ElpsGfxInfo, bool selected) const; //Draw a Triangle
+
+
 	
 	///TODO: Make similar functions for drawing all other figures.
 	

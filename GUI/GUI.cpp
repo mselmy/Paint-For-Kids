@@ -98,6 +98,9 @@ ActionType GUI::MapInputToActionType() const
 			{
 			case ITM_SQUR: return DRAW_SQUARE;
 			case ITM_ELPS: return DRAW_ELPS;
+			case ITM_HEXA: return DRAW_HEX;
+			case ITM_CIRC: return DRAW_CIRC;
+			case ITM_TRNG: return DRAW_TRA;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
@@ -169,6 +172,9 @@ void GUI::CreateDrawToolBar() const
 
 
 	//TODO: Prepare images for each menu item and add it to the list
+	MenuItemImages[ITM_HEXA] = "images\\MenuItems\\Menu_Hex.jpg";
+	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circle.jpg";
+	MenuItemImages[ITM_TRNG] = "images\\MenuItems\\Menu_Tri.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 
@@ -262,10 +268,109 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 	//pWind->DrawLine(P1.x, P1.y, P1.x + length, P1.y + length, style);
 
 }
+/////////////////////////////////////////////////////////////////////////////
+void GUI::DrawEllipse(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = RectGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth);	//Set Drawing color & width
+
+	drawstyle style;
+	if (RectGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(RectGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
 
 
+	pWind->DrawEllipse(P1.x, P1.y, P2.x, P2.y, style);
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+void GUI::DrawHexagon(Point P1, Point P2, GfxInfo HexGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = HexGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, HexGfxInfo.BorderWdth);	//Set Drawing color & width
+
+	drawstyle style;
+	if (HexGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(HexGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+	int lengthx = abs(P1.x - P2.x);
+	int lengthy = abs(P1.y - P2.y);
+
+	int arrx[6] = { P1.x,P1.x + lengthx, P1.x + 1.5 * lengthx,P1.x + lengthx,P1.x,P1.x - 0.5 * lengthx };
+	int arry[6] = { P1.y,P1.y,P1.y + 0.5 * lengthy,P1.y + lengthy,P1.y + lengthy,P1.y + 0.5 * lengthy };
+
+	pWind->DrawPolygon(arrx, arry, 6, style);
+
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+void GUI::DrawCircle(Point P1, int _radius, GfxInfo RectGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = RectGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, RectGfxInfo.BorderWdth);	//Set Drawing color & width
+
+	drawstyle style;
+	if (RectGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(RectGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+
+	pWind->DrawCircle(P1.x, P1.y, _radius, style);
+
+
+}
+void GUI::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo ElpsGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = ElpsGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, ElpsGfxInfo.BorderWdth);	//Set Drawing color & width
+
+	drawstyle style;
+	if (ElpsGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(ElpsGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+
+	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y, P3.x, P3.y, style);
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()
+
 {
 	delete pWind;
 }

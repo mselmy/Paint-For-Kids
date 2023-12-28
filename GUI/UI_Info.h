@@ -19,9 +19,13 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
+
 	
 	//TODO: Add more items names here
 	//ITM_SELECT,		//select item in menu
+	ITM_HEXA,      //Hexagon item in menu
+	ITM_CIRC,      //Circle item in menu
+	ITM_TRNG,      //Triangle item in menu
 	ITM_SAVE,		//save item in menu
 	ITM_LOAD,		//load item in menu	
 	ITM_EXIT,		//Exit item
