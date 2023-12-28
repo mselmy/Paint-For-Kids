@@ -54,7 +54,7 @@ void CSquare::Load(ifstream& Infile)
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
 	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	FigGfxInfo.DrawClr = stringToColor(drawColorString);
+	ChngDrawClr(stringToColor(drawColorString));
 
 	// Check if the fill is "NO_FILL"
 	if (fill == "NO_FILL") {
@@ -65,7 +65,7 @@ void CSquare::Load(ifstream& Infile)
 	{
 		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
 		FigGfxInfo.isFilled = true;
-		FigGfxInfo.FillClr = stringToColor(fill);
+		ChngFillClr(stringToColor(fill));
 	}
 }
 

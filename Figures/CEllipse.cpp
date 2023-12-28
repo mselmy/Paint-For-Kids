@@ -39,7 +39,7 @@ void CEllipse::Save(ofstream& OutFile)	//Save the figure parameters to the file
     OutFile << endl << ITM_ELPS << "\t" << ID << "\t" << P1.x << "\t" << P1.y << "\t" << P2.x << "\t" << P2.y << "\t";
 	OutFile << "(" << (int)FigGfxInfo.DrawClr.ucRed << "," << (int)FigGfxInfo.DrawClr.ucGreen << "," << (int)FigGfxInfo.DrawClr.ucBlue << ")" << "\t";
 	if (FigGfxInfo.isFilled)
-		OutFile << FigGfxInfo.FillClr.ucRed << "\t" << FigGfxInfo.FillClr.ucGreen << "\t" << FigGfxInfo.FillClr.ucBlue << "\t";
+		OutFile << "(" << (int)FigGfxInfo.FillClr.ucRed << "," << (int)FigGfxInfo.FillClr.ucGreen << "," << (int)FigGfxInfo.FillClr.ucBlue << ")" << endl;
 	else
 		OutFile << "NO_FILL";
 }
@@ -57,7 +57,7 @@ void CEllipse::Load(ifstream& Infile)	//Load the figure parameters to the file
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
 	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	FigGfxInfo.DrawClr = stringToColor(drawColorString);
+	ChngDrawClr(stringToColor(drawColorString));
 
 	// Check if the fill is "NO_FILL"
 	if (fill == "NO_FILL") {
@@ -68,6 +68,6 @@ void CEllipse::Load(ifstream& Infile)	//Load the figure parameters to the file
 	{
 		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
 		FigGfxInfo.isFilled = true;
-		FigGfxInfo.FillClr = stringToColor(fill);
+		ChngFillClr(stringToColor(fill));
 	}
 }
