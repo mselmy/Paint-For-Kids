@@ -175,6 +175,9 @@
     <ClCompile Include="Figures\CTriangle.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionSend_to_Back.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -291,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="Figures\CTriangle.h">
       <Filter>Figures Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionSend_to_Back.h">
+      <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
