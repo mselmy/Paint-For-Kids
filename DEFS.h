@@ -13,14 +13,14 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_TRA,       //DRAW A TRIANGL
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
-	CHNG_BK_CLR,	//Change background color
+	CHNG_BG_CLR,	//Change background color
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
 	RESIZE,			//Resize a figure(s)
 	ROTATE,			//Rotate a figure(s)
 	SEND_TO_BACK,		//Send a figure to the back of all figures
 	BRING_TO_FRONT,		//Bring a figure to the front of all figures
-	SAVE,			//Save the whole graph to a file
+  SAVE,			//Save the whole graph to a file
 	LOAD,			//Load a graph from a file
 	EXIT,			//Exit the application
 

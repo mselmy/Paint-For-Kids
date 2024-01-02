@@ -19,19 +19,25 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
-
+	
 	
 	//TODO: Add more items names here
 	//ITM_SELECT,		//select item in menu
 	ITM_HEXA,      //Hexagon item in menu
 	ITM_CIRC,      //Circle item in menu
 	ITM_TRNG,      //Triangle item in menu
+	ITM_CLR,     //Change shape color
+	ITM_BG,			//Change background color
+	ITM_FILL,		//Change shape filling
+  ITM_SEND_TO_BACK,// Send_to_back
+	ITM_BRING_TO_FRONT,// brnig to front
 	ITM_SAVE,		//save item in menu
 	ITM_LOAD,		//load item in menu	
-	ITM_EXIT,		//Exit item
-	ITM_SEND_TO_BACK,// Send_to_back
-	ITM_BRING_TO_FRONT,// brnig to front
+	ITM_DEL,		//Delete item
+  ITM_EXIT,		//Exit item
 
+
+	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 	
 };
@@ -43,7 +49,7 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 	
 	//TODO: Add more items names here
 
-	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
+	PLAY_ITM_COUNT,		//no. of menu items ==> This should be the last line in this enum
 	
 };
 
@@ -63,7 +69,7 @@ struct UI_Info	//User Interface Info.
 		ToolBarHeight,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 		MenuItemWidth;		//Width of each item in toolbar menu
 	
-
+	bool IsFilled;
 	color DrawColor;		//Drawing color
 	color FillColor;		//Filling color
 	color HighlightColor;	//Highlighting color
