@@ -14,8 +14,9 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-
-
+#include"Actions/ActionSend_to_Back.h"
+#include "Actions/Action_Bring_toFront.h"
+#include "Figures/CSquare.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -100,6 +101,24 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case LOAD:
 		newAct = new ActionLoad(this);
 		break;
+
+    case BRING_TO_FRONT:
+		for (int j = 0; j < FigCount; j++) {
+			if (FigList[j]->IsSelected()) {
+				newAct = new Bring_to_Front(this, FigList[j]);
+			}
+		}
+		break;
+
+	case SEND_TO_BACK:
+		for (int i = FigCount - 1; i > 0; i--) {
+
+			if (FigList[i]->IsSelected()) {
+
+				newAct = new Send_to_Back(this, FigList[i]);
+			}
+		}
+      
 	case DEL:
 		newAct = new ActionDelete(this);
 		break;
@@ -151,6 +170,51 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 }
 ////////////////////////////////////////////////////////////////////////////////////
+///////Bring_To_Front \ send to back/////////////
+
+void ApplicationManager::LoadFig()  //for each figure FigList, make it points to NULL 
+{
+	for (int i = 0; i < FigCount; ++i)
+		FigList[i] = NULL;
+	FigCount = 0;
+}
+
+////////////////Send_to_Back/////////////////////////////
+void ApplicationManager::Send_Back(CFigure* swapped)
+{
+	CFigure* temp = swapped;
+	int Swapped_index = 0;
+	for (int i = 0; i < FigCount; i++) {
+		if (swapped == FigList[i])
+		{
+			Swapped_index = i;
+			break;
+
+		}
+	}
+
+	for (int i = Swapped_index; i > 0; i--) {
+		FigList[i] = FigList[i - 1];
+	}
+	FigList[0] = temp;
+}
+
+//////////////////Bring_to_Front///////////////////////////////
+void ApplicationManager::Bring_Front(CFigure* swapped)
+{
+	CFigure* temp = swapped;
+	int Swapped_index = 0;
+	for (int i = 0; i < FigCount; i++) {
+		if (swapped == FigList[i])
+			Swapped_index = i;
+	}
+	
+	for (int i = Swapped_index; i < FigCount - 1; i++) {
+		FigList[i] = FigList[i + 1];
+	}
+	FigList[FigCount - 1] = temp;
+}
+
 CFigure* ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
