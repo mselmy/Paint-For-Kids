@@ -11,7 +11,6 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include"Actions/ActionSend_to_Back.h"
 
 
 
@@ -26,11 +25,6 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
-}
-
-void ApplicationManager::set_LastMessage(string s)
-{
-	LastMessage = s;
 }
 
 void ApplicationManager::Run()
@@ -98,16 +92,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		newAct = new ActionDelete(this);
 		break;
 
-	case SEND_TO_BACK:
-		for (int i = FigCount - 1; i > 0; i--) {
-
-			if (FigList[i]->IsSelected()) {
-
-				newAct = new Send_to_Back(this, FigList[i]);
-			}
-		}
-		break;
-
 	case EXIT:
 		///create ExitAction here
 
@@ -145,44 +129,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 }
 ////////////////////////////////////////////////////////////////////////////////////
-///////Bring_To_Front \ send to back/////////////
-
-void ApplicationManager::LoadFig()  //for each figure FigList, make it points to NULL 
-{
-	for (int i = 0; i < FigCount; ++i)
-		FigList[i] = NULL;
-	FigCount = 0;
-}
-
-
-void ApplicationManager::Send_Back(CFigure* swapped)
-{
-	CFigure* temp = swapped;
-	int Swapped_index = 0;
-	for (int i = 0; i < FigCount; i++) {
-		if (swapped == FigList[i])
-		{
-			Swapped_index = i;
-			break;
-
-		}
-	}
-
-	for (int i = Swapped_index; i > 0; i--) {
-		FigList[i] = FigList[i - 1];
-	}
-	FigList[0] = temp;
-}
-
-
-
-
-
-
-
-
-
-
 CFigure* ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.

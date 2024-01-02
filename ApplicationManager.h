@@ -35,14 +35,8 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	bool IsAnyFigureSelected(); //Checks if any figure is selected
 	void UnselectAllFigures(); //Unselects all figures on the list
-	void set_LastMessage(string); // saving the last message
 	int getFigCount() const; //Returns the number of figures
 	void saveAll(ofstream& OutFile); //Saves all figures in a file
-	void Send_Back(CFigure*);//Send to back
-	void LoadFig();  //clean the FigList
-
-	string LastMessage;
-
 	void Deleteselected();
 		
 	// -- Interface Management Functions	
