@@ -39,6 +39,8 @@ public:
 	int getFigCount() const; //Returns the number of figures
 	void saveAll(ofstream& OutFile); //Saves all figures in a file
 	void Send_Back(CFigure*);//Send to back
+	void Bring_Front(CFigure*);///Bring to front
+
 	void LoadFig();  //clean the FigList
 
 	string LastMessage;

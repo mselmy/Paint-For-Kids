@@ -11,7 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include"Actions/ActionSend_to_Back.h"
-
+#include "Actions/Action_Bring_toFront.h"
 #include "Figures/CSquare.h"
 
 //Constructor
@@ -94,6 +94,18 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		newAct = new ActionLoad(this);
 		break;
 
+
+	case BRING_TO_FRONT:
+		for (int j = 0; j < FigCount; j++) {
+			if (FigList[j]->IsSelected()) {
+				newAct = new Bring_to_Front(this, FigList[j]);
+			}
+		}
+		break;
+
+	
+	
+
 	case SEND_TO_BACK:
 		for (int i = FigCount - 1; i > 0; i--) {
 
@@ -150,7 +162,7 @@ void ApplicationManager::LoadFig()  //for each figure FigList, make it points to
 	FigCount = 0;
 }
 
-
+////////////////Send_to_Back/////////////////////////////
 void ApplicationManager::Send_Back(CFigure* swapped)
 {
 	CFigure* temp = swapped;
@@ -170,9 +182,21 @@ void ApplicationManager::Send_Back(CFigure* swapped)
 	FigList[0] = temp;
 }
 
-
-
-
+//////////////////Bring_to_Front///////////////////////////////
+void ApplicationManager::Bring_Front(CFigure* swapped)
+{
+	CFigure* temp = swapped;
+	int Swapped_index = 0;
+	for (int i = 0; i < FigCount; i++) {
+		if (swapped == FigList[i])
+			Swapped_index = i;
+	}
+	
+	for (int i = Swapped_index; i < FigCount - 1; i++) {
+		FigList[i] = FigList[i + 1];
+	}
+	FigList[FigCount - 1] = temp;
+}
 
 
 

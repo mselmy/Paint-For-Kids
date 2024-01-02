@@ -105,6 +105,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
 			case ITM_SEND_TO_BACK: return SEND_TO_BACK;
+			case ITM_BRING_TO_FRONT:return BRING_TO_FRONT;
 
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
@@ -180,6 +181,8 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_To_Back.jpg";
+	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_To_Front.jpg";
+
 
 
 	//Draw menu item one image at a time
