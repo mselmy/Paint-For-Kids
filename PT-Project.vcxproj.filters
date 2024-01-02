@@ -176,6 +176,7 @@
       <Filter>Figures Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\ActionSend_to_Back.cpp">
+    <ClCompile Include="Actions\ActionDelete.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -296,6 +297,7 @@
       <Filter>Figures Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionSend_to_Back.h">
+    <ClInclude Include="Actions\ActionDelete.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

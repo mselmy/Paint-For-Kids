@@ -7,12 +7,13 @@
 #include "Actions\ActionSelectFigure.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
+#include "Actions/ActionDelete.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include"Actions/ActionSend_to_Back.h"
 
-#include "Figures/CSquare.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -92,6 +93,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 	case LOAD:
 		newAct = new ActionLoad(this);
+		break;
+	case DEL:
+		newAct = new ActionDelete(this);
 		break;
 
 	case SEND_TO_BACK:
@@ -184,7 +188,6 @@ CFigure* ApplicationManager::GetFigure(int x, int y) const
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
-
 	///Add your code here to search for a figure given a point x,y
 	for (int i = FigCount - 1; i >= 0; i--)
 	{
@@ -240,6 +243,44 @@ void ApplicationManager::reset()
 	FigCount = 0;
 	pGUI->ClearDrawArea();
 }
+
+void ApplicationManager::Deleteselected() //Delete Selected Figures
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		// delete the selected figures
+		if (FigList[i]->IsSelected())
+		{
+			delete FigList[i];
+			FigList[i] = NULL;
+		}
+	}
+	// declare number of deleted figures variable
+	int nDeleted = 0;
+
+	// Shifting figures to the top of figure list
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i] == NULL)
+		{
+			nDeleted++;
+		}
+		else
+		{
+			FigList[i - nDeleted] = FigList[i];
+		}
+	}
+
+	// set repeated figures pointer to NULL;
+	for (int i = nDeleted; i > 0; i--)
+	{
+		FigList[FigCount - i] = NULL;
+	}
+
+	// set figure count to the new value
+	FigCount -= nDeleted;
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//

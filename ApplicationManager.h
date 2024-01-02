@@ -43,11 +43,13 @@ public:
 
 	string LastMessage;
 
+	void Deleteselected();
 		
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void reset(); //Resets the application and deletes all figures/
+
 
 };
 
