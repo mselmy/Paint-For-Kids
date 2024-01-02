@@ -9,6 +9,8 @@
 #include "../Figures/CSquare.h"
 #include "../Figures/CCircle.h"
 #include "../Figures/CEllipse.h"
+#include "../Figures/CTriangle.h"
+#include "../Figures/CHexagon.h"
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
@@ -87,6 +89,12 @@ void ActionLoad::Execute()
 			break;
 		case ITM_ELPS:
 			figure = new CEllipse(p, p, SqrGfxInfo);
+			break;
+		case ITM_TRNG:
+				figure = new CTriangle(p, p, p, SqrGfxInfo);
+			break;
+		case ITM_HEXA:
+			figure = new CHexagon(p, p, SqrGfxInfo);
 			break;
 		}
 		figure->Load(inFile);

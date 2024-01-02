@@ -60,3 +60,19 @@ void CFigure::ChngFillStts(bool isFilled)
 	FigGfxInfo.isFilled = isFilled;
 }
 
+void CFigure::seTDrawandFillClr(string drawColorString, string fill) // set the draw and fill color of the figure
+{
+	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
+	ChngDrawClr(stringToColor(drawColorString));
+
+	// Check if the fill is "NO_FILL"
+	if (fill == "NO_FILL") {
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = NULL;
+	}
+	else
+	{
+		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
+		ChngFillClr(stringToColor(fill));
+	}
+}

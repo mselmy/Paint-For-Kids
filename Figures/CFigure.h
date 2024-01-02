@@ -48,6 +48,8 @@ public:
 
 	color stringToColor(string); // we need to change and color to string aswell
 	void ChngFillStts(bool isFilled); //changes the figure's filling status
+	void seTDrawandFillClr(string, string); // set the draw and fill color of the figure
+
 };
 
 
