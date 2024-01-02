@@ -47,6 +47,7 @@ public:
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 
 	color stringToColor(string); // we need to change and color to string aswell
+	void ChngFillStts(bool isFilled); //changes the figure's filling status
 };
 
 

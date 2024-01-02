@@ -5,6 +5,9 @@
 #include "Actions\ActionAddHexagon.h"
 #include "Actions\ActionAddTriangle.h"
 #include "Actions\ActionSelectFigure.h"
+#include "Actions/ActionChangeColor.h"
+#include "Actions/ActionChangeFill.h"
+#include "Actions/ActionChangeBackground.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include <fstream>
@@ -79,6 +82,15 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case DRAW_TRA:
 		newAct = new ActionAddTriangle(this);
 		break;
+	case CHNG_DRAW_CLR:
+		newAct = new ActionChangeColor(this);
+		break;
+	case CHNG_BG_CLR:
+		newAct = new ActionChangeBackground(this);
+		break;
+	case CHNG_FILL_CLR:
+		newAct = new ActionChangeFill(this);
+		break;
 
 	case SAVE:
 		newAct = new ActionSave(this);
@@ -89,7 +101,8 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		break;
 
 	case EXIT:
-		///create ExitAction here
+		ExitMessage();
+		break;
 
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
@@ -113,6 +126,15 @@ void ApplicationManager::ExecuteAction(Action*& pAct)
 		delete pAct;	//Action is not needed any more ==> delete it
 		pAct = NULL;
 	}
+}
+void ApplicationManager::SetPoint(int _x, int _y)
+{
+	x = _x;
+	y = _y;
+}
+void ApplicationManager::ResetPoint()
+{
+	x = y = -1;
 }
 //==================================================================================//
 //						Figures Management Functions								//
@@ -174,6 +196,14 @@ void ApplicationManager::saveAll(ofstream& OutFile)
 		FigList[i]->Save(OutFile);
 	}
 }
+void ApplicationManager::UpdateFigureColor(color _color) const //Update border color of selected figure(s)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->IsSelected())
+			FigList[i]->ChngDrawClr(_color);
+	}
+}
 
 
 void ApplicationManager::reset()
@@ -185,6 +215,17 @@ void ApplicationManager::reset()
 	}
 	FigCount = 0;
 	pGUI->ClearDrawArea();
+}
+void ApplicationManager::UpdateFigureFill(color _color, bool isFilled) const //Update fill color of selected figure(s)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->IsSelected())
+		{
+			FigList[i]->ChngFillStts(isFilled);
+			FigList[i]->ChngFillClr(_color);
+		}
+	}
 }
 //==================================================================================//
 //							Interface Management Functions							//
@@ -210,4 +251,33 @@ ApplicationManager::~ApplicationManager()
 		delete FigList[i];
 	delete pGUI;
 
+}
+//==================================================================================//
+//							------EXIT WINDOW----------      						//
+//==================================================================================//
+
+int ApplicationManager::ExitMessage()
+{
+	int msgboxID = MessageBox(
+		NULL,
+		"Are You Sure You Have Saved Your File?\n Click ok to Leave\nClick cancel to Save",
+		"Exit",
+		MB_OKCANCEL | MB_ICONWARNING
+	);
+
+	switch (msgboxID)
+	{
+	case IDCANCEL:
+	{
+
+		Action* newAct = new ActionSave(this);
+		ExecuteAction(newAct);
+	}
+	break;
+	case IDOK:
+		exit(0);
+		break;
+	}
+
+	return msgboxID;
 }

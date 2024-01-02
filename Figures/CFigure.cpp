@@ -55,4 +55,8 @@ color CFigure::stringToColor(string s)
 	c.ucBlue = b;
 	return c;
 }
+void CFigure::ChngFillStts(bool isFilled)
+{
+	FigGfxInfo.isFilled = isFilled;
+}
 

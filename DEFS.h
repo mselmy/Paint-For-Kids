@@ -13,7 +13,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_TRA,       //DRAW A TRIANGL
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
-	CHNG_BK_CLR,	//Change background color
+	CHNG_BG_CLR,	//Change background color
 	DEL,			//Delete a figure(s)
 	MOVE,			//Move a figure(s)
 	RESIZE,			//Resize a figure(s)

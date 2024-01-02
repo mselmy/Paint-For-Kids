@@ -175,6 +175,15 @@
     <ClCompile Include="Figures\CTriangle.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ActionChangeBackground.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionChangeColor.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionChangeFill.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -262,9 +271,6 @@
     <ClInclude Include="Actions\ActionSelectFigure.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\ActionSave.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\ActionLoad.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
@@ -291,6 +297,18 @@
     </ClInclude>
     <ClInclude Include="Figures\CTriangle.h">
       <Filter>Figures Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionChangeBackground.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionSave.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionChangeColor.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionChangeFill.h">
+      <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

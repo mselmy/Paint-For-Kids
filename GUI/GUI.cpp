@@ -101,6 +101,9 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_HEXA: return DRAW_HEX;
 			case ITM_CIRC: return DRAW_CIRC;
 			case ITM_TRNG: return DRAW_TRA;
+			case ITM_CLR: return CHNG_DRAW_CLR;
+			case ITM_BG: return CHNG_BG_CLR;
+			case ITM_FILL: return CHNG_FILL_CLR;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
@@ -169,12 +172,13 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
-
-
 	//TODO: Prepare images for each menu item and add it to the list
 	MenuItemImages[ITM_HEXA] = "images\\MenuItems\\Menu_Hex.jpg";
 	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circle.jpg";
 	MenuItemImages[ITM_TRNG] = "images\\MenuItems\\Menu_Tri.jpg";
+	MenuItemImages[ITM_BG] = "images\\MenuItems\\MenuBackground.jpg";
+	MenuItemImages[ITM_CLR] = "images\\MenuItems\\MenuColor.jpg";
+	MenuItemImages[ITM_FILL] = "images\\MenuItems\\MenuFill.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 
@@ -222,12 +226,29 @@ color GUI::getCrntDrawColor() const	//get current drwawing color
 	return UI.DrawColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+void GUI::setCrntDrawColor(color _color) const	//set current drwawing color
+{
+	UI.DrawColor = _color;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+void GUI::setCrntFillColor(color _color, bool isFilled) const	//set current fill color
+{
+	UI.IsFilled = isFilled;
+	UI.FillColor = _color;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
 
 color GUI::getCrntFillColor() const	//get current filling color
 {
 	return UI.FillColor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+void GUI::setCrntBackgroundColor(color _color) const	//set current background color
+{
+	UI.BkGrndColor = _color;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+
 
 color GUI::getBackgroundColor() const //get current background color
 {
