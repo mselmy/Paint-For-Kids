@@ -133,6 +133,9 @@
     <ClCompile Include="Actions\ActionAddEllipse.cpp" />
     <ClCompile Include="Actions\ActionAddHexagon.cpp" />
     <ClCompile Include="Actions\ActionAddTriangle.cpp" />
+    <ClCompile Include="Actions\ActionChangeBackground.cpp" />
+    <ClCompile Include="Actions\ActionChangeColor.cpp" />
+    <ClCompile Include="Actions\ActionChangeFill.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
@@ -188,6 +191,9 @@
     <ClInclude Include="Actions\ActionAddEllipse.h" />
     <ClInclude Include="Actions\ActionAddHexagon.h" />
     <ClInclude Include="Actions\ActionAddTriangle.h" />
+    <ClInclude Include="Actions\ActionChangeBackground.h" />
+    <ClInclude Include="Actions\ActionChangeColor.h" />
+    <ClInclude Include="Actions\ActionChangeFill.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
