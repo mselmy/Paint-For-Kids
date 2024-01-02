@@ -107,7 +107,6 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
 			case ITM_EXIT: return EXIT;
-			case ITM_SEND_TO_BACK: return SEND_TO_BACK;
 			case ITM_BRING_TO_FRONT:return BRING_TO_FRONT;
 			case ITM_DEL: return DEL;
           
@@ -184,7 +183,6 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\MenuFill.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
-	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_To_Back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_To_Front.jpg";
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
 

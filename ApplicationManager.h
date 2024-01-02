@@ -44,8 +44,9 @@ public:
 	void UnselectAllFigures(); //Unselects all figures on the list
 	int getFigCount() const; //Returns the number of figures
 	void saveAll(ofstream& OutFile); //Saves all figures in a file
-	void Send_Back(CFigure*);//Send to back
 	void Bring_Front(CFigure*);///Bring to front
+	void set_LastMessage(string); // saving the last message
+
 
 	void LoadFig();  //clean the FigList
 

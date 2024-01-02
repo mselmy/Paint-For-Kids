@@ -14,7 +14,6 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include"Actions/ActionSend_to_Back.h"
 #include "Actions/Action_Bring_toFront.h"
 #include "Figures/CSquare.h"
 
@@ -110,7 +109,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		}
 		break;
 
-	case SEND_TO_BACK:
+	/*case SEND_TO_BACK:
 		for (int i = FigCount - 1; i > 0; i--) {
 
 			if (FigList[i]->IsSelected()) {
@@ -118,7 +117,8 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 				newAct = new Send_to_Back(this, FigList[i]);
 			}
 		}
-      
+		break;
+      */
 	case DEL:
 		newAct = new ActionDelete(this);
 		break;
@@ -159,6 +159,11 @@ void ApplicationManager::ResetPoint()
 {
 	x = y = -1;
 }
+
+void ApplicationManager::set_LastMessage(string s)
+{
+	LastMessage = s;
+}
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
@@ -179,25 +184,6 @@ void ApplicationManager::LoadFig()  //for each figure FigList, make it points to
 	FigCount = 0;
 }
 
-////////////////Send_to_Back/////////////////////////////
-void ApplicationManager::Send_Back(CFigure* swapped)
-{
-	CFigure* temp = swapped;
-	int Swapped_index = 0;
-	for (int i = 0; i < FigCount; i++) {
-		if (swapped == FigList[i])
-		{
-			Swapped_index = i;
-			break;
-
-		}
-	}
-
-	for (int i = Swapped_index; i > 0; i--) {
-		FigList[i] = FigList[i - 1];
-	}
-	FigList[0] = temp;
-}
 
 //////////////////Bring_to_Front///////////////////////////////
 void ApplicationManager::Bring_Front(CFigure* swapped)
