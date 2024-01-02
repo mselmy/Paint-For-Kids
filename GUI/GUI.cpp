@@ -184,7 +184,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\MenuFill.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
-	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_To_Back.jpg";
+	MenuItemImages[ITM_SEND_TO_BACK] = "images\\MenuItems\\Send_to_back.jpg";
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_To_Front.jpg";
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
 

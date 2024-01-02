@@ -8,13 +8,14 @@
 #include "Actions/ActionChangeColor.h"
 #include "Actions/ActionChangeFill.h"
 #include "Actions/ActionChangeBackground.h"
+#include "Actions/Action_Send_to_Back.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionDelete.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include"Actions/ActionSend_to_Back.h"
+//#include"Actions/ActionSend_to_Back.h"
 #include "Actions/Action_Bring_toFront.h"
 #include "Figures/CSquare.h"
 
@@ -29,6 +30,10 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
+}
+void ApplicationManager::Set_LastMessage(string s) {
+	LastMessage = s;
+
 }
 
 void ApplicationManager::Run()
@@ -109,7 +114,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			}
 		}
 		break;
-
+	
 	case SEND_TO_BACK:
 		for (int i = FigCount - 1; i > 0; i--) {
 
@@ -118,6 +123,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 				newAct = new Send_to_Back(this, FigList[i]);
 			}
 		}
+		break;
       
 	case DEL:
 		newAct = new ActionDelete(this);

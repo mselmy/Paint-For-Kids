@@ -49,7 +49,8 @@ public:
 
 	void LoadFig();  //clean the FigList
 
-	string LastMessage;
+	void Set_LastMessage(string);//saving last messages
+	string LastMessage;//defin last message
 	int ExitMessage(); //// Action Exit
 	void Deleteselected(); // delete selected figure
 		

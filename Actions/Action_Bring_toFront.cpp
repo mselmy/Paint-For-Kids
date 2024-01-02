@@ -15,11 +15,11 @@ void Bring_to_Front::Execute()
 	{
 		pManager->Bring_Front(Selected);
 		pGUI->PrintMessage("Bring to Front");
-		pManager->set_LastMessage("Brought to Front");
+		pManager->Set_LastMessage("Brought to Front");
 	}
 	else
 	{
 		pGUI->PrintMessage("Please, Select a figure");
-		pManager->set_LastMessage("Please, Select a figure");
+		pManager->Set_LastMessage("Please, Select a figure");
 	}
 }
