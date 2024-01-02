@@ -16,6 +16,10 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
+	int FigCountBackup;		//Actual number of figures
+	CFigure* FigListBackup[MaxFigCount];	//Clone version of FigList (Array of pointers)
+	CFigure* selectedfigure; //The Selected Figure
+
 	//Pointers to Input and Output classes
 	GUI* pGUI;
 	
@@ -44,6 +48,9 @@ public:
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void reset(); //Resets the application and deletes all figures/
 
+	void backupFigList();
+
+	void restoreFigList();
 
 };
 

@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActionSwitchToDrawMode.cpp" />
     <ClCompile Include="Actions\ActionAddCircle.cpp" />
     <ClCompile Include="Actions\ActionAddEllipse.cpp" />
     <ClCompile Include="Actions\ActionAddHexagon.cpp" />
@@ -137,6 +138,8 @@
     <ClCompile Include="Actions\ActionLoad.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelectFigure.cpp" />
+    <ClCompile Include="ActionToDraw.cpp" />
+    <ClCompile Include="ActionToPlay.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActionSwitchToDrawMode.h" />
     <ClInclude Include="Actions\ActionAddCircle.h" />
     <ClInclude Include="Actions\ActionAddEllipse.h" />
     <ClInclude Include="Actions\ActionAddHexagon.h" />
@@ -192,6 +196,8 @@
     <ClInclude Include="Actions\ActionLoad.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelectFigure.h" />
+    <ClInclude Include="ActionToDraw.h" />
+    <ClInclude Include="ActionToPlay.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

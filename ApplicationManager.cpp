@@ -8,6 +8,8 @@
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionDelete.h"
+#include "ActionToDraw.h"
+#include "ActionToPlay.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -87,6 +89,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 
 	case LOAD:
 		newAct = new ActionLoad(this);
+		break;
+	case ACTION_TO_PLAY:
+		newAct = new ActionToPlay(this);
+		break;
+	case ACTION_TO_DRAW:
+		newAct = new ActionToDraw(this);
 		break;
 	case DEL:
 		newAct = new ActionDelete(this);
@@ -189,6 +197,23 @@ void ApplicationManager::reset()
 	FigCount = 0;
 	pGUI->ClearDrawArea();
 }
+void ApplicationManager::backupFigList()
+{
+	for (int i = 0; i < FigCount; i++) {
+		FigListBackup[i] = FigList[i]->Clone();
+	}
+	FigCountBackup = FigCount;
+}
+void ApplicationManager::restoreFigList()
+{
+	for (int i = 0; i < FigCountBackup; i++) {
+		FigList[i] = FigListBackup[i]->Clone();
+	}
+	FigCount = FigCountBackup;
+	UpdateInterface();
+
+}
+
 
 void ApplicationManager::Deleteselected() //Delete Selected Figures
 {

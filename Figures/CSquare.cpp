@@ -53,4 +53,6 @@ void CSquare::Load(ifstream& Infile)
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
-
+CSquare* CSquare::Clone() const {
+	return new CSquare(*this);
+}

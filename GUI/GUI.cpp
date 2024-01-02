@@ -1,5 +1,6 @@
 #include "GUI.h"
-
+#include "UI_Info.h"
+#include <iostream>
 //constructor make necessary initializations
 GUI::GUI()
 {
@@ -103,9 +104,9 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_TRNG: return DRAW_TRA;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
-			case ITM_EXIT: return EXIT;
+			case ITM_PLAY:return  ACTION_TO_PLAY;
 			case ITM_DEL: return DEL;
-
+			case ITM_EXIT: return EXIT;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -119,6 +120,32 @@ ActionType GUI::MapInputToActionType() const
 		//[3] User clicks on the status bar
 		return STATUS;
 	}
+	else if (UI.InterfaceMode == MODE_PLAY)	//GUI is in PLAY mode
+	{
+
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			switch (ClickedItemOrder)
+			{
+			/*case PLAY_TYPE: return ACTION_PLAY_TYPE;
+			case PLAY_FILL: return ACTION_PLAY_FILL;
+			case PLAY_TYPEFILL: return ACTION_PLAY_TYPEFILL;
+			case PLAY_RESET: return ACTION_PLAY_RESET;*/
+			case PLAY_BACK: return ACTION_TO_DRAW;
+			default: return EMPTY;	//A click on empty place in desgin toolbar
+			}
+		}
+		//[2] User clicks on the drawing area
+		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
+		{
+			return DRAWING_AREA;
+		}
+		//[3] User clicks on the status bar
+		return STATUS;
+		//return TO_PLAY;	//just for now. This should be updated
+	}
+
 	else	//GUI is in PLAY mode
 	{
 		///TODO:
@@ -179,6 +206,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
+	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\PlayMode.jpg";
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
@@ -194,9 +222,25 @@ void GUI::CreateDrawToolBar() const
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void GUI::CreatePlayToolBar() const
-{
-	UI.InterfaceMode = MODE_PLAY;
-	///TODO: write code to create Play mode menu
+{///TODO: write code to create Play mode menu
+		
+	ClearToolBarArea();
+		UI.InterfaceMode = MODE_PLAY;
+		string PlayMenuImages[PLAY_ITM_COUNT];
+		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\type.jpg";
+		PlayMenuImages[PLAY_FILL] = "images\\MenuItems\\fill.jpg";
+		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\typeandfill.jpg";
+		PlayMenuImages[PLAY_RESET] = "images\\MenuItems\\newgame.jpg";
+		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\back.jpeg";
+
+		//TODO: Prepare images for each menu item and add it to the list
+		//Draw menu item one image at a time
+		for (int i = 0; i < PLAY_ITM_COUNT; i++)
+			pWind->DrawImage(PlayMenuImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+		//Draw a line under the toolbar
+		pWind->SetPen(RED, 3);
+		pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +252,12 @@ void GUI::ClearDrawArea() const
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+void GUI::ClearToolBarArea() const
+{
+	pWind->SetPen(WHITE, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
+}
 
 void GUI::PrintMessage(string msg) const	//Prints a message on status bar
 {

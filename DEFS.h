@@ -24,13 +24,13 @@ enum ActionType //The actions supported (you can add more if needed)
 	LOAD,			//Load a graph from a file
 	EXIT,			//Exit the application
 
+	TO_DRAW,		//Switch interface to Draw mode
+	TO_PLAY,		//Switch interface to Play mode
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
 	EMPTY,			//A click on empty place in the toolbar
-
-	TO_DRAW,		//Switch interface to Draw mode
-	TO_PLAY			//Switch interface to Play mode
-
+	ACTION_TO_PLAY,		//Switch interface to Play mode
+	ACTION_TO_DRAW		//Switch interface to Draw mode
 	///TODO: Add more action types (if needed)
 };
 
