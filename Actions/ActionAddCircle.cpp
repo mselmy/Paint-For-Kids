@@ -68,7 +68,11 @@ void ActionAddCircle::Execute()
 
 	//Step 3 - Create a Circle with the parameters read from the user
 	CCircle* R = new CCircle(center, radius, SqrGfxInfo);
-
+	if (P1.x - radius < 0 || P1.y - radius < UI.ToolBarHeight || P1.x + radius > UI.width || P1.y + radius > UI.height - UI.StatusBarHeight) {
+		pGUI->PrintMessage("You Can't Draw Circle");
+		return;
+	}
+	
 	//Step 4 - Add the Circle to the list of figures
 	pManager->AddFigure(R);
 }

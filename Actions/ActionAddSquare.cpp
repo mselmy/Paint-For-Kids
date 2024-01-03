@@ -52,7 +52,10 @@ void ActionAddSquare::Execute()
 		
 	//Step 3 - Create a Square with the parameters read from the user
 	CSquare *R=new CSquare(topLeft, SideLength, SqrGfxInfo);
-
+	if (P1.x<0 || P1.y < UI.ToolBarHeight || P1.x + SideLength > UI.width || P1.y + SideLength>UI.height - UI.StatusBarHeight) {
+		pGUI->PrintMessage("You Can't Draw Square");
+		return;
+	}
 	//Step 4 - Add the Square to the list of figures
 	pManager->AddFigure(R);
 }

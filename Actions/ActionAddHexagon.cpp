@@ -30,14 +30,14 @@ void ActionAddHexagon::Execute()
 	pGUI->PrintMessage("New Hexagon: Click at first point");
 	//Read 1st point and store in point P1
 	pGUI->GetPointClicked(P1.x, P1.y);
-	if (P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight || P1.x < UI.MenuItemWidth)
+	if (P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight )
 	{
 		bool flag = false; //false as long as the click is in wrong place
 		pGUI->PrintMessage("Please, Choose a valid Point");
 		while (!flag)
 		{
 			pGUI->GetPointClicked(P1.x, P1.y); //Get Pasting Point
-			if (!(P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight || P1.x < UI.MenuItemWidth))
+			if (!(P1.y < UI.ToolBarHeight || P1.y > UI.height - UI.StatusBarHeight ))
 				flag = 1;
 		}
 	}
@@ -45,14 +45,14 @@ void ActionAddHexagon::Execute()
 	pGUI->PrintMessage("New Hexagon: Click at second point");
 	//Read 2nd point and store in point P2
 	pGUI->GetPointClicked(P2.x, P2.y);
-	if (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight || P2.x < UI.MenuItemWidth)
+	if (P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight )
 	{
 		bool flag = false; //false as long as the click is in wrong place
 		pGUI->PrintMessage("Please, Choose a valid Point");
 		while (!flag)
 		{
 			pGUI->GetPointClicked(P2.x, P2.y); //Get Pasting Point
-			if (!(P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight || P2.x < UI.MenuItemWidth))
+			if (!(P2.y < UI.ToolBarHeight || P2.y > UI.height - UI.StatusBarHeight ))
 				flag = 1;
 		}
 	}
@@ -73,6 +73,10 @@ void ActionAddHexagon::Execute()
 
 	//Step 3 - Create a Hexagon with the parameters read from the user
 	CHexagon* H = new CHexagon(topLeft, bottomright, HexGfxInfo);
+	if ((topLeft.x - 0.5 * abs(P1.x - P2.x)) < 0 || topLeft.y < UI.ToolBarHeight || (bottomright.x + 0.5 * abs(P1.x - P2.x)) > UI.width || bottomright.y > UI.height - UI.StatusBarHeight) {
+	pGUI->PrintMessage("You Can't Draw Hexagon: Out of Drawing Area");
+	return;
+}
 
 	//Step 4 - Add the Hexagon to the list of figures
 	pManager->AddFigure(H);

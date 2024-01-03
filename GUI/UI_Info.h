@@ -33,6 +33,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_LOAD,		//load item in menu	
 	ITM_DEL,		//Delete item
 	ITM_EXIT,		//Exit item
+	
 
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
@@ -74,6 +75,7 @@ struct UI_Info	//User Interface Info.
 	color BkGrndColor;		//Background color
 	color StatusBarColor;	//Status bar color
 	int PenWidth;			//width of the pen that draws shapes
+	int isFilled;
 
 	/// Add more members if needed
 	
