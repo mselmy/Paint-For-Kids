@@ -187,6 +187,30 @@
     <ClCompile Include="Actions\ActionDelete.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\Action_Bring_toFront.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\Action_Send_to_Back.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionSwitchToDrawMode.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionToDraw.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionToPlay.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionResizeShape.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionPickByType.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ActionPickByColor.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -314,6 +338,30 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\ActionDelete.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Action_Bring_toFront.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Action_Send_to_Back.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionSwitchToDrawMode.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionToDraw.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionToPlay.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionResizeShape.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionPickByType.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ActionPickByColor.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

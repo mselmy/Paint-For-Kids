@@ -16,6 +16,10 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
+	int FigCountBackup;		//Actual number of figures
+	CFigure* FigListBackup[MaxFigCount];	//Clone version of FigList (Array of pointers)
+	CFigure* selectedfigure; //The Selected Figure
+
 	//Pointers to Input and Output classes
 	GUI* pGUI;
 	//Current coordinates of selected menu action
@@ -34,7 +38,7 @@ public:
 	void ExecuteAction(Action*&) ; //Execute an action
 	void SetPoint(int, int); //Set x and y to coordinates of last selected menu action
 	void ResetPoint(); //Set x and y to -1
-	
+	void clearInterface();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
@@ -44,15 +48,28 @@ public:
 	void UnselectAllFigures(); //Unselects all figures on the list
 	int getFigCount() const; //Returns the number of figures
 	void saveAll(ofstream& OutFile); //Saves all figures in a file
+	void Send_Back(CFigure*);//Send to back
+	void Bring_Front(CFigure*);///Bring to front
+
+	void LoadFig();  //clean the FigList
+
+	void Set_LastMessage(string);//saving last messages
+	string LastMessage;//defin last message
 	int ExitMessage(); //// Action Exit
 	void Deleteselected(); // delete selected figure
+	int WarningMessage(LPCSTR); // warning message
 		
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void reset(); //Resets the application and deletes all figures/
 
+	void backupFigList();
 
+	void restoreFigList();
+
+	void Resize_figure(float size) const; //resize figure
+	CFigure* DrawnFigs(int i) const;//draw figs
 };
 
 #endif

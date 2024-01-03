@@ -17,6 +17,13 @@ ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 
 void ActionLoad::Execute()
 {
+
+	if (pManager->getFigCount() != 0)
+	{
+		if (pManager->WarningMessage("You didn't save your Drawings, Do you want to save them?\nClick yes to save\nClick no to continoue without saving") == -1)
+			return;
+	}
+
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
 
