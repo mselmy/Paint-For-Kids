@@ -14,6 +14,7 @@ private:
 	int VerticalLen;
 	int HorizentalLen;
 public:
+	virtual CHexagon* Clone() const;
 	ApplicationManager* pManager = NULL;	//Actions needs AppMngr to do their job
 	int Area;
 	CHexagon(Point, Point, GfxInfo FigureGfxInfo);

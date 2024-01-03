@@ -48,3 +48,6 @@ void CCircle::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CCircle* CCircle::Clone() const {
+	return new CCircle(*this);
+}

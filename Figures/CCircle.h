@@ -12,6 +12,8 @@ private:
 	Point center;
 	int radius;
 public:
+	virtual CCircle* Clone() const;
+
 	ApplicationManager* pManager = NULL;	//Actions needs AppMngr to do their job
 
 	CCircle(Point, int, GfxInfo FigureGfxInfo);
