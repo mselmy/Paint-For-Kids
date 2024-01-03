@@ -139,6 +139,9 @@
     <ClCompile Include="Actions\ActionChangeFill.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="Actions\ActionPickByColor.cpp" />
+    <ClCompile Include="Actions\ActionPickByType.cpp" />
+    <ClCompile Include="Actions\ActionResizeShape.cpp" />
     <ClCompile Include="Actions\ActionSave.cpp" />
     <ClCompile Include="Actions\ActionSelectFigure.cpp" />
     <ClCompile Include="Actions\Action_Bring_toFront.cpp" />
@@ -202,6 +205,9 @@
     <ClInclude Include="Actions\ActionChangeFill.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionPickByColor.h" />
+    <ClInclude Include="Actions\ActionPickByType.h" />
+    <ClInclude Include="Actions\ActionResizeShape.h" />
     <ClInclude Include="Actions\ActionSave.h" />
     <ClInclude Include="Actions\ActionSelectFigure.h" />
     <ClInclude Include="Actions\Action_Bring_toFront.h" />

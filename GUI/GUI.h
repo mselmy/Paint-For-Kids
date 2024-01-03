@@ -22,8 +22,10 @@ public:
 	void GetPointClicked(int &x, int &y) const;//Get coordinate where user clicks
 	string GetSrting() const ;	 //Returns a string entered by the user
 	ActionType MapInputToActionType() const; //Read the user click and map to an action
-
-
+	//es
+	void CreateReSizeBar()const; //create the resize bar
+	void CreateToolBar() const;//create tool bar
+	//
 	/////////// Output Functoinality  ////////////////
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu

@@ -10,7 +10,8 @@
 enum GUI_MODE	//Graphical user interface mode
 {
 	MODE_DRAW,	//Drawing mode (startup mode)
-	MODE_PLAY	//Playing mode
+	MODE_PLAY,	//Playing mode
+	MODE_RESIZE  //resize mode
 };
 
 enum DrawMenuItem //The items of the Draw menu (you should add more items)
@@ -19,23 +20,23 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_SQUR,		//Square item in menu
 	ITM_ELPS,		//Ellipse item in menu
-	
-	
 	//TODO: Add more items names here
 	//ITM_SELECT,		//select item in menu
 	ITM_HEXA,      //Hexagon item in menu
 	ITM_CIRC,      //Circle item in menu
 	ITM_TRNG,      //Triangle item in menu
-	ITM_CLR,     //Change shape color
+	ITM_PLAY,        //play item in menu
+	ITM_CLR,
 	ITM_BG,			//Change background color
 	ITM_FILL,		//Change shape filling
-  ITM_SEND_TO_BACK,// Send_to_back
+	ITM_RESIZE,//Change shape color
+	ITM_SEND_TO_BACK,// Send_to_back
 	ITM_BRING_TO_FRONT,// brnig to front
 	ITM_SAVE,		//save item in menu
 	ITM_LOAD,		//load item in menu	
 	ITM_DEL,		//Delete item
-	ITM_PLAY,		//To Play Mode
-  ITM_EXIT,		//Exit item
+	ITM_EXIT,		//Exit item
+	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 	
 };
@@ -44,18 +45,27 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here
-	
+  
 	//TODO: Add more items names here
 	PLAY_TYPE,
 	PLAY_FILL,
 	PLAY_TYPEFILL,
-	PLAY_RESET,
+	//PLAY_RESET,
 	PLAY_BACK,
 	PLAY_ITM_COUNT	//no. of menu items ==> This should be the last line in this enum
-	
+
 };
 
 
+enum ResizeMenueItems //items of resize menu 
+{
+	ITM_BACK,
+	ITM_QUARTER,
+	ITM_HALF,
+	ITM_DOUBLE,
+	ITM_QUADRAPLE,
+	RESIZE_ITM_COUNT,
+};
 
 
 

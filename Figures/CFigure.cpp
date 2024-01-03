@@ -1,9 +1,13 @@
 #include "CFigure.h"
-
+CFigure::CFigure()
+{
+	figHidden = false;
+}
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+	figHidden = false;
 	ID = ++counter; //assigning the ID of the figure
 }
 
@@ -75,4 +79,22 @@ void CFigure::seTDrawandFillClr(string drawColorString, string fill) // set the 
 		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
 		ChngFillClr(stringToColor(fill));
 	}
+}
+void CFigure::Hide()
+{
+	figHidden = true;
+}
+//Shows Figures
+void CFigure::Show()
+{
+	figHidden = false;
+}
+
+
+bool CFigure::HiddenStatus() {
+	return figHidden;
+}
+GfxInfo CFigure::GetGfxInfo()
+{
+	return FigGfxInfo;
 }

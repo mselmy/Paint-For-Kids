@@ -34,7 +34,7 @@ void ActionChangeFill::Execute()
 		int colorOrder = P.x / UI.MenuItemWidth;
 		switch (colorOrder)
 		{
-		case 0: pGUI->setCrntFillColor(WHITE, false); pManager->UpdateFigureFill(WHITE, false); break;
+		case 0: pGUI->setCrntFillColor(WHITE,false); pManager->UpdateFigureFill(WHITE,false); break;
 		case 1: pGUI->setCrntFillColor(WHITE); pManager->UpdateFigureFill(WHITE); break;
 		case 2: pGUI->setCrntFillColor(BLACK); pManager->UpdateFigureFill(BLACK); break;
 		case 3: pGUI->setCrntFillColor(BROWN); pManager->UpdateFigureFill(BROWN); break;
