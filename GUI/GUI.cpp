@@ -403,10 +403,11 @@ void GUI::DrawSquare(Point P1, int length, GfxInfo RectGfxInfo, bool selected) c
 	}
 	else
 		style = FRAME;
+	
 
 
 	pWind->DrawRectangle(P1.x, P1.y, P1.x + length, P1.y + length, style);
-	//pWind->DrawLine(P1.x, P1.y, P1.x + length, P1.y + length, style);
+	
 
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -429,6 +430,7 @@ void GUI::DrawEllipse(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	else
 		style = FRAME;
 
+	
 
 	pWind->DrawEllipse(P1.x, P1.y, P2.x, P2.y, style);
 }
@@ -458,6 +460,15 @@ void GUI::DrawHexagon(Point P1, Point P2, GfxInfo HexGfxInfo, bool selected) con
 	int arrx[6] = { P1.x,P1.x + lengthx, P1.x + 1.5 * lengthx,P1.x + lengthx,P1.x,P1.x - 0.5 * lengthx };
 	int arry[6] = { P1.y,P1.y,P1.y + 0.5 * lengthy,P1.y + lengthy,P1.y + lengthy,P1.y + 0.5 * lengthy };
 
+
+	Point topleft, bottomright;
+	topleft.x = P1.x - 0.5 * lengthx;
+	topleft.y = P1.y;
+	bottomright.x= P1.x  +1.5 * lengthx;
+	bottomright.y = P1.y + 1.732 * lengthx;
+
+	
+
 	pWind->DrawPolygon(arrx, arry, 6, style);
 
 }
@@ -480,6 +491,9 @@ void GUI::DrawCircle(Point P1, int _radius, GfxInfo RectGfxInfo, bool selected) 
 	}
 	else
 		style = FRAME;
+
+	
+
 
 
 	pWind->DrawCircle(P1.x, P1.y, _radius, style);
