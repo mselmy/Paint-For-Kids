@@ -8,17 +8,21 @@
 #include "Actions/ActionChangeColor.h"
 #include "Actions/ActionChangeFill.h"
 #include "Actions/ActionChangeBackground.h"
+#include "Actions/Action_Send_to_Back.h"
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionDelete.h"
+#include "ActionToDraw.h"
+#include "ActionToPlay.h"
 #include "Actions/ActionResizeShape.h"
 #include "Actions/ActionPickByType.h"
 #include "Actions/ActionPickByColor.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-
-
+//#include"Actions/ActionSend_to_Back.h"
+#include "Actions/Action_Bring_toFront.h"
+#include "Figures/CSquare.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -31,6 +35,10 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
 		FigList[i] = NULL;
+}
+void ApplicationManager::Set_LastMessage(string s) {
+	LastMessage = s;
+
 }
 
 void ApplicationManager::Run()
@@ -104,6 +112,31 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case LOAD:
 		newAct = new ActionLoad(this);
 		break;
+
+    case BRING_TO_FRONT:
+		for (int j = 0; j < FigCount; j++) {
+			if (FigList[j]->IsSelected()) {
+				newAct = new Bring_to_Front(this, FigList[j]);
+			}
+		}
+		break;
+	
+	case SEND_TO_BACK:
+		for (int i = FigCount - 1; i > 0; i--) {
+
+			if (FigList[i]->IsSelected()) {
+
+				newAct = new Send_to_Back(this, FigList[i]);
+			}
+		}
+		break;
+      
+	case ACTION_TO_PLAY:
+		newAct = new ActionToPlay(this);
+		break;
+	case ACTION_TO_DRAW:
+		newAct = new ActionToDraw(this);
+		break;
 	case DEL:
 		newAct = new ActionDelete(this);
 		break;
@@ -111,7 +144,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		newAct = new ActionPickByColor(this);
 		break;
 	case EXIT:
-		ExitMessage();
+		WarningMessage("You didn't sage your Drawings\nClick yes to save them\nClick no to Exit without saving");
 		break;
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
@@ -157,6 +190,51 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 }
 ////////////////////////////////////////////////////////////////////////////////////
+///////Bring_To_Front \ send to back/////////////
+
+void ApplicationManager::LoadFig()  //for each figure FigList, make it points to NULL 
+{
+	for (int i = 0; i < FigCount; ++i)
+		FigList[i] = NULL;
+	FigCount = 0;
+}
+
+////////////////Send_to_Back/////////////////////////////
+void ApplicationManager::Send_Back(CFigure* swapped)
+{
+	CFigure* temp = swapped;
+	int Swapped_index = 0;
+	for (int i = 0; i < FigCount; i++) {
+		if (swapped == FigList[i])
+		{
+			Swapped_index = i;
+			break;
+
+		}
+	}
+
+	for (int i = Swapped_index; i > 0; i--) {
+		FigList[i] = FigList[i - 1];
+	}
+	FigList[0] = temp;
+}
+
+//////////////////Bring_to_Front///////////////////////////////
+void ApplicationManager::Bring_Front(CFigure* swapped)
+{
+	CFigure* temp = swapped;
+	int Swapped_index = 0;
+	for (int i = 0; i < FigCount; i++) {
+		if (swapped == FigList[i])
+			Swapped_index = i;
+	}
+	
+	for (int i = Swapped_index; i < FigCount - 1; i++) {
+		FigList[i] = FigList[i + 1];
+	}
+	FigList[FigCount - 1] = temp;
+}
+
 CFigure* ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
@@ -242,6 +320,23 @@ void ApplicationManager::reset()
 	FigCount = 0;
 	pGUI->ClearDrawArea();
 }
+void ApplicationManager::backupFigList()
+{
+	for (int i = 0; i < FigCount; i++) {
+		FigListBackup[i] = FigList[i]->Clone();
+	}
+	FigCountBackup = FigCount;
+}
+void ApplicationManager::restoreFigList()
+{
+	for (int i = 0; i < FigCountBackup; i++) {
+		FigList[i] = FigListBackup[i]->Clone();
+	}
+	FigCount = FigCountBackup;
+	UpdateInterface();
+
+}
+
 
 void ApplicationManager::UpdateFigureFill(color _color, bool isFilled) const //Update fill color of selected figure(s)
 {
@@ -322,37 +417,38 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 
 }
+
 //==================================================================================//
-//							------EXIT WINDOW----------      						//
+//							------Warning message WINDOW----------      			//
 //==================================================================================//
 
-int ApplicationManager::ExitMessage()
+int ApplicationManager::WarningMessage(LPCSTR warningMessage)
 {
 	int msgboxID = MessageBox(
-		NULL,
-		"Are You Sure You Have Saved Your File?\n Click ok to Leave\nClick cancel to Save",
-		"Exit",
-		MB_OKCANCEL | MB_ICONWARNING
+		NULL, 
+		warningMessage,
+		"Warning",
+		MB_YESNOCANCEL | MB_ICONWARNING
 	);
-
 	switch (msgboxID)
 	{
-	case IDCANCEL:
+	case IDYES:
 	{
-
 		Action* newAct = new ActionSave(this);
 		ExecuteAction(newAct);
-	}
-	break;
-	case IDOK:
-		exit(0);
+		delete newAct;
 		break;
 	}
+	case IDNO:
+		break;
 
+	case IDCANCEL:
+		return -1;
+		break;
+	}
 	return msgboxID;
 }
 CFigure* ApplicationManager::DrawnFigs(int i) const
 {
 	return FigList[i];
 }
-

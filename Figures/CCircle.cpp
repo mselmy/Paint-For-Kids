@@ -51,6 +51,9 @@ void CCircle::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CCircle* CCircle::Clone() const {
+	return new CCircle(*this);
+  }
 void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
 	int newRadius = static_cast<int>(radius * size);
 
@@ -69,4 +72,3 @@ void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
 		// Update the circle's properties
 		radius = newRadius;
 	}
-}

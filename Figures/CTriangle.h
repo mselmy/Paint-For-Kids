@@ -12,6 +12,7 @@ class CTriangle : public CFigure
 	Point P2;
 	Point P3;
 public:
+	virtual CTriangle* Clone() const;
 	ApplicationManager* pManager = NULL;	//Actions needs AppMngr to do their job
 	int Area;
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);

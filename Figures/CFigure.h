@@ -21,7 +21,7 @@ public:
 	CFigure(GfxInfo FigureGfxInfo);
 	void SetSelected(bool );	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-
+	virtual CFigure* Clone() const = 0;
 	virtual void DrawMe(GUI*) const  = 0 ;		//Draw the figure
 
 	virtual bool IsPointInside(int , int ) const = 0;	//whether the point is inside the figure or not

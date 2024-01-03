@@ -31,12 +31,13 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_RESIZE,//Change shape color
 	ITM_BG,			//Change background color
 	ITM_FILL,		//Change shape filling
+  ITM_SEND_TO_BACK,// Send_to_back
+	ITM_BRING_TO_FRONT,// brnig to front
 	ITM_SAVE,		//save item in menu
 	ITM_LOAD,		//load item in menu	
 	ITM_DEL,		//Delete item
-	ITM_EXIT,	
-	//Exit item
-
+	ITM_PLAY,		//To Play Mode
+  ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
 	
@@ -46,10 +47,14 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here
-
+  
 	//TODO: Add more items names here
-	ITM_BACK1,
-	PICK_BY_TYPE,
+	PLAY_TYPE,
+	PLAY_FILL,
+	PLAY_TYPEFILL,
+	PLAY_RESET,
+	PLAY_BACK,
+	PLAY_ITM_COUNT	//no. of menu items ==> This should be the last line in this enum
 	
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

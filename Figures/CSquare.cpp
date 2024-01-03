@@ -56,6 +56,9 @@ void CSquare::Load(ifstream& Infile)
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CSquare* CSquare::Clone() const {
+	return new CSquare(*this);
+}
 void CSquare::ActionResizeFigure(GUI* pGUI, float size) {
 	// Store the original length
 	float length_test = length;
@@ -86,4 +89,3 @@ void CSquare::ActionResizeFigure(GUI* pGUI, float size) {
 		length = length_test;
 	}
 }
-

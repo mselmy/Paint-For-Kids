@@ -11,6 +11,8 @@ private:
 	Point TopLeftCorner;	
 	int length;
 public:
+	virtual CSquare* Clone() const;
+
 	CSquare(Point , int, GfxInfo FigureGfxInfo );
 	virtual void DrawMe(GUI* pOut) const;
 
