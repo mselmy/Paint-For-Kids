@@ -72,3 +72,4 @@ void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
 		// Update the circle's properties
 		radius = newRadius;
 	}
+}

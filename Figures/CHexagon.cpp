@@ -84,3 +84,8 @@ void CHexagon::ActionResizeFigure(GUI* pGUI, float size) {//resize hexagon
 		BottomRightCorner = point2;
 	}
 }
+
+void CHexagon::SetID(int id)
+{
+	ID = id;
+}

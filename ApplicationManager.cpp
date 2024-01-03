@@ -87,7 +87,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case DRAW_CIRC:
 		newAct = new ActionAddCircle(this);
 		break;
-
 	case DRAW_TRA:
 		newAct = new ActionAddTriangle(this);
 		break;
@@ -100,7 +99,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case CHNG_BG_CLR:
 		newAct = new ActionChangeBackground(this);
 		break;
-	case TO_PLAY:
+	case ACTION_PLAY_TYPE:
 		newAct = new ActionPickByType(this);
 		break;
 	case CHNG_FILL_CLR:
@@ -131,7 +130,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		}
 		break;
       
-	case ACTION_TO_PLAY:
+	case TO_PLAY:
 		newAct = new ActionToPlay(this);
 		break;
 	case ACTION_TO_DRAW:
@@ -140,12 +139,11 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case DEL:
 		newAct = new ActionDelete(this);
 		break;
-	case PLAY_COLOR:
+	case ACTION_PLAY_FILL:
 		newAct = new ActionPickByColor(this);
 		break;
 	case EXIT:
 		WarningMessage("You didn't sage your Drawings\nClick yes to save them\nClick no to Exit without saving");
-		break;
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
 		newAct = new ActionSelectFigure(this);

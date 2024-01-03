@@ -94,3 +94,4 @@ void CEllipse::ActionResizeFigure(GUI* pGUI, float size) {
 		P2 = point2;
 
 	}
+}

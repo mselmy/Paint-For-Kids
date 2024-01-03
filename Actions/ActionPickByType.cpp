@@ -90,153 +90,160 @@ void ActionPickByType::Execute()
 	pGUI->ClearStatusBar();
 	if (pManager->IsAnyFigureSelected()) {//to make sure that there are figures selected
 		ActionType pAction;
-		do {
-			pGUI->CreatePlayToolBar();
-			UI.InterfaceMode = MODE_PLAY;
-			pAction = pGUI->MapInputToActionType();
-			switch (pAction)
+		//do {
+			//pGUI->CreatePlayToolBar();
+			//UI.InterfaceMode = MODE_PLAY;
+			//pAction = pGUI->MapInputToActionType();
+			//switch (pAction)
+			//{
+			//case PICK:
+
+		GetShape();
+		if (numOfFigures > 1)
+		{
+			CFigure* clickedFig;
+
+			// get random number in the range 0 to figCount
+			randomFiguresNum = rand() % pManager->getFigCount();
+			Fig = pManager->DrawnFigs(randomFiguresNum);
+			if (dynamic_cast<CSquare*>(Fig))
 			{
-			case PICK:
-				
-				GetShape();
-				if (numOfFigures > 1)
+
+				pickedFigureCount = figs[0];
+				pGUI->PrintMessage("Pick up all the Squares !");
+
+			}
+			else if (dynamic_cast<CCircle*>(Fig))
+			{
+				pickedFigureCount = figs[1];
+				pGUI->PrintMessage("Pick up all the Circles !");
+			}
+
+			else if (dynamic_cast<CEllipse*>(Fig))
+			{
+				pickedFigureCount = figs[2];
+				pGUI->PrintMessage("Pick up all the Ellipse !");
+			}
+			else if (dynamic_cast<CHexagon*>(Fig))
+			{
+				pickedFigureCount = figs[3];
+				pGUI->PrintMessage("Pick up all the Hexagon !");
+			}
+			else if (dynamic_cast<CTriangle*>(Fig))
+			{
+				pickedFigureCount = figs[4];
+				pGUI->PrintMessage("Pick up all the Triangle !");
+			}
+			while (pickedFigureCount > 0)
+			{
+				pGUI->GetPointClicked(p.x, p.y);
+				if (p.y > UI.ToolBarHeight || p.x > (UI.MenuItemWidth * PLAY_ITM_COUNT))
 				{
-					CFigure* clickedFig;
+					clickedFig = pManager->GetFigure(p.x, p.y);
 
-					// get random number in the range 0 to figCount
-					randomFiguresNum = rand() % pManager->getFigCount();
-					Fig = pManager->DrawnFigs(randomFiguresNum);
-					if (dynamic_cast<CSquare*>(Fig))
+					if (clickedFig != NULL)
 					{
 
-						pickedFigureCount = figs[0];
-						pGUI->PrintMessage("Pick up all the Squares !");
-
-					}
-					else if (dynamic_cast<CCircle*>(Fig))
-					{
-						pickedFigureCount = figs[1];
-						pGUI->PrintMessage("Pick up all the Circles !");
-					}
-
-					else if (dynamic_cast<CEllipse*>(Fig))
-					{
-						pickedFigureCount = figs[2];
-						pGUI->PrintMessage("Pick up all the Ellipse !");
-					}
-					else if (dynamic_cast<CHexagon*>(Fig))
-					{
-						pickedFigureCount = figs[3];
-						pGUI->PrintMessage("Pick up all the Ellipse !");
-					}
-					else if (dynamic_cast<CTriangle*>(Fig))
-					{
-						pickedFigureCount = figs[4];
-						pGUI->PrintMessage("Pick up all the Ellipse !");
-					}
-					while (pickedFigureCount > 0)
-					{
-						pGUI->GetPointClicked(p.x, p.y);
-						if (p.y > UI.ToolBarHeight || p.x > (UI.MenuItemWidth * PLAY_ITM_COUNT))
+						if ((dynamic_cast<CSquare*>(clickedFig)) && (dynamic_cast<CSquare*>(Fig)))
 						{
-							clickedFig = pManager->GetFigure(p.x, p.y);
+							calcScore(1);
+							clickedFig->Hide();
 
-							if (clickedFig != NULL)
-							{
+							pickedFigureCount--;
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
+						}
+						else if ((dynamic_cast<CCircle*>(clickedFig)) && (dynamic_cast<CCircle*>(Fig)))
+						{
+							calcScore(1);
+							clickedFig->Hide();
+							pickedFigureCount--;
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
 
-								if ((dynamic_cast<CSquare*>(clickedFig)) && (dynamic_cast<CSquare*>(Fig)))
-								{
-									calcScore(1);
-									clickedFig->Hide();
-									
-									pickedFigureCount--;
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
-								}
-								else if ((dynamic_cast<CCircle*>(clickedFig)) && (dynamic_cast<CCircle*>(Fig)))
-								{
-									calcScore(1);
-									clickedFig->Hide();
-									pickedFigureCount--;
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
+						}
+						else if ((dynamic_cast<CEllipse*>(clickedFig)) && (dynamic_cast<CEllipse*>(Fig)))
+						{
+							calcScore(1);
+							clickedFig->Hide();
 
-								}
-								else if ((dynamic_cast<CEllipse*>(clickedFig)) && (dynamic_cast<CEllipse*>(Fig)))
-								{
-									calcScore(1);
-									clickedFig->Hide();
-									
-									pickedFigureCount--;
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
+							pickedFigureCount--;
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
 
-								}
-								else if ((dynamic_cast<CHexagon*>(clickedFig)) && (dynamic_cast<CHexagon*>(Fig)))
-								{
-									calcScore(1);
-									clickedFig->Hide();
-									
-									pickedFigureCount--;
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
+						}
+						else if ((dynamic_cast<CHexagon*>(clickedFig)) && (dynamic_cast<CHexagon*>(Fig)))
+						{
+							calcScore(1);
+							clickedFig->Hide();
 
-								}
-								else if ((dynamic_cast<CTriangle*>(clickedFig)) && (dynamic_cast<CTriangle*>(Fig)))
-								{
-									calcScore(1);
-									clickedFig->Hide();
-									
-									pickedFigureCount--;
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
+							pickedFigureCount--;
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
 
-								}
-								else
-								{
-									calcScore(2);
-									clickedFig->Hide();
-									
-									pGUI->ClearDrawArea();
-									pManager->UpdateInterface();
-								}
+						}
+						else if ((dynamic_cast<CTriangle*>(clickedFig)) && (dynamic_cast<CTriangle*>(Fig)))
+						{
+							calcScore(1);
+							clickedFig->Hide();
 
-							}
+							pickedFigureCount--;
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
+
 						}
 						else
 						{
-							pickedFigureCount = -1;
-							pGUI->ClearStatusBar();
+							calcScore(2);
+							clickedFig->Hide();
+
+							pGUI->ClearDrawArea();
+							pManager->UpdateInterface();
 						}
-					}
-					pGUI->ClearDrawArea();
-					// end the clicked
-					if (pickedFigureCount == 0)
-					{
-						calcScore(3);
+
 					}
 				}
 				else
 				{
-					pGUI->PrintMessage("You must have at least two types of figures to play ! ");
+					pickedFigureCount = -1;
+					pGUI->ClearStatusBar();
 				}
-
-				for (int i = 0; i < pManager->getFigCount(); i++)
-				{
-					pManager->DrawnFigs(i)->Show();
-				}
-				pManager->UpdateInterface();
-				break;
-			case BACK:
-				//return back to draw mode
-				UI.InterfaceMode = MODE_DRAW;
-				pGUI->CreateDrawToolBar();
-				pGUI->PrintMessage("Back to draw mode!");
-				break;
 			}
-		} while (pAction != BACK);
+			pGUI->ClearDrawArea();
+			// end the clicked
+			if (pickedFigureCount == 0)
+			{
+				calcScore(3);
+			}
+			for (int i = 0; i < pManager->getFigCount(); i++)
+			{
+				pManager->DrawnFigs(i)->Show();
+			}
+		}
+		/*/else
+		{
+			pGUI->PrintMessage("You must have at least two types of figures to play ! ");
+		}
+
+		for (int i = 0; i < pManager->getFigCount(); i++)
+		{
+			pManager->DrawnFigs(i)->Show();
+		}
+		pManager->UpdateInterface();
+		break;
+	case BACK:
+		//return back to draw mode
+		UI.InterfaceMode = MODE_DRAW;
+		pGUI->CreateDrawToolBar();
+		pGUI->PrintMessage("Back to draw mode!");
+		break;
 	}
-	else {
-		pGUI->PrintMessage("select at least 2 shapes");
+} while (pAction != BACK);
+}
+*/
+
+		else {
+			pGUI->PrintMessage("select at least 2 shapes");
+		}
 	}
 }

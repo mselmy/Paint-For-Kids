@@ -121,7 +121,7 @@ void ActionPickByColor::GetFilledShape()
 		}
 		else
 		{
-			colors[10]++;
+			//colors[10]++;
 		}
 	}
 

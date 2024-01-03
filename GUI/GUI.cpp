@@ -106,7 +106,6 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_PLAY:return TO_PLAY;
 			case ITM_CLR: return CHNG_DRAW_CLR;
 			case ITM_BG: return CHNG_BG_CLR;
-			case ITM_PICK_COLOR:return PLAY_COLOR;
 			case ITM_FILL: return CHNG_FILL_CLR;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
@@ -114,7 +113,6 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_SEND_TO_BACK: return SEND_TO_BACK;
 			case ITM_BRING_TO_FRONT:return BRING_TO_FRONT;
 			case ITM_DEL: return DEL;          
-			case ITM_PLAY:return  ACTION_TO_PLAY;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -130,16 +128,15 @@ ActionType GUI::MapInputToActionType() const
 	}
 	else if (UI.InterfaceMode == MODE_PLAY)	//GUI is in PLAY mode
 	{
-
 		if (y >= 0 && y < UI.ToolBarHeight)
 		{
 			int ClickedItemOrder = (x / UI.MenuItemWidth);
 			switch (ClickedItemOrder)
 			{
-			/*case PLAY_TYPE: return ACTION_PLAY_TYPE;
+			case PLAY_TYPE: return ACTION_PLAY_TYPE;
 			case PLAY_FILL: return ACTION_PLAY_FILL;
 			case PLAY_TYPEFILL: return ACTION_PLAY_TYPEFILL;
-			case PLAY_RESET: return ACTION_PLAY_RESET;*/
+			//case PLAY_RESET: return ACTION_PLAY_RESET;*/
 			case PLAY_BACK: return ACTION_TO_DRAW;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -177,22 +174,6 @@ ActionType GUI::MapInputToActionType() const
 				return QUADRUPLE;
 			default: return EMPTY;
 			}
-		}
-	}
-	else if (UI.InterfaceMode == MODE_PLAY) {//get play mode
-		int ClickedItemOrder = (x / UI.MenuItemWidth);
-		//Divide x coord of the point clicked by the menu item width (int division)
-		//If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
-		switch (ClickedItemOrder)
-		{
-		case ITM_BACK1://back item
-			return BACK;
-		case PICK_BY_TYPE://first play part(pick by type).
-			return PICK;
-	//	case ITM_PICK_COLOR:
-		//	return PLAY_COLOR;
-
-		default: return EMPTY;
 		}
 	}
 }
@@ -238,12 +219,10 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
-	MenuItemImages[ITM_PICK_COLOR] = "images\\MenuItems\\pick_color.jpg";
 	//TODO: Prepare images for each menu item and add it to the list
 	MenuItemImages[ITM_HEXA] = "images\\MenuItems\\Menu_Hex.jpg";
 	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circle.jpg";//
 	MenuItemImages[ITM_TRNG] = "images\\MenuItems\\Menu_Tri.jpg";
-	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\Menue_playMode.jpg";
 	MenuItemImages[ITM_BG] = "images\\MenuItems\\MenuBackground.jpg";
 	MenuItemImages[ITM_CLR] = "images\\MenuItems\\MenuColor.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\MenuFill.jpg";
@@ -273,10 +252,10 @@ void GUI::CreatePlayToolBar() const
 	ClearToolBarArea();
 		UI.InterfaceMode = MODE_PLAY;
 		string PlayMenuImages[PLAY_ITM_COUNT];
-		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\type.jpg";
-		PlayMenuImages[PLAY_FILL] = "images\\MenuItems\\fill.jpg";
+		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\pick_color.jpg";
+		PlayMenuImages[PLAY_FILL] = "images\\MenuItems\\Menue_Colors.jpg";
 		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\typeandfill.jpg";
-		PlayMenuImages[PLAY_RESET] = "images\\MenuItems\\newgame.jpg";
+		//PlayMenuImages[PLAY_RESET] = "images\\MenuItems\\newgame.jpg";
 		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\back.jpeg";
 
 		//TODO: Prepare images for each menu item and add it to the list
@@ -311,6 +290,7 @@ void GUI::CreateReSizeBar()const {
 	pWind->SetPen(GREEN, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
+/*
 void GUI::CreatePlayToolBar() const//creation of play tool bar
 {
 	CreateToolBar();
@@ -318,7 +298,7 @@ void GUI::CreatePlayToolBar() const//creation of play tool bar
 	pWind->SetPen(PINK, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 	string MenuePlayMode[PLAY_ITM_COUNT];
-	MenuePlayMode[ITM_BACK1] = "images\\MenuItems\\Menue_Back.jpg";
+	MenuePlayMode[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
 	MenuePlayMode[PICK_BY_TYPE] = "images\\MenuItems\\Menue_shapes.jpg";
 	for (int i = 0; i < PLAY_ITM_COUNT; i++) {
 		pWind->DrawImage(MenuePlayMode[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
@@ -326,7 +306,7 @@ void GUI::CreatePlayToolBar() const//creation of play tool bar
 
 
 
-}
+}*/
 
 void GUI::CreateToolBar() const
 {
