@@ -11,6 +11,9 @@
 #include "Actions\ActionSave.h"
 #include "Actions\ActionLoad.h"
 #include "Actions/ActionDelete.h"
+#include "Actions/ActionResizeShape.h"
+#include "Actions/ActionPickByType.h"
+#include "Actions/ActionPickByColor.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -67,15 +70,12 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case DRAW_SQUARE:
 		newAct = new ActionAddSquare(this);
 		break;
-
 	case DRAW_ELPS:
 		newAct = new ActionAddEllipse(this);
 		break;
-
 	case DRAW_HEX:
 		newAct = new ActionAddHexagon(this);
 		break;
-
 	case DRAW_CIRC:
 		newAct = new ActionAddCircle(this);
 		break;
@@ -83,31 +83,36 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case DRAW_TRA:
 		newAct = new ActionAddTriangle(this);
 		break;
+	case RESIZE:
+		newAct = new ActionResizeShape(this);
+		break;
 	case CHNG_DRAW_CLR:
 		newAct = new ActionChangeColor(this);
 		break;
 	case CHNG_BG_CLR:
 		newAct = new ActionChangeBackground(this);
 		break;
+	case TO_PLAY:
+		newAct = new ActionPickByType(this);
+		break;
 	case CHNG_FILL_CLR:
 		newAct = new ActionChangeFill(this);
 		break;
-
 	case SAVE:
 		newAct = new ActionSave(this);
 		break;
-
 	case LOAD:
 		newAct = new ActionLoad(this);
 		break;
 	case DEL:
 		newAct = new ActionDelete(this);
 		break;
-
+	case PLAY_COLOR:
+		newAct = new ActionPickByColor(this);
+		break;
 	case EXIT:
 		ExitMessage();
 		break;
-
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
 		newAct = new ActionSelectFigure(this);
@@ -131,6 +136,7 @@ void ApplicationManager::ExecuteAction(Action*& pAct)
 		pAct = NULL;
 	}
 }
+
 void ApplicationManager::SetPoint(int _x, int _y)
 {
 	x = _x;
@@ -175,7 +181,15 @@ bool ApplicationManager::IsAnyFigureSelected()
 	}
 	return false;
 }
-
+//Return a pointer to the interface
+void ApplicationManager::clearInterface()
+{
+	//Create an array of figure pointers and set them to NULL		
+	for (int i = 0; i < MaxFigCount; i++)
+		FigList[i] = NULL;
+	FigCount = 0;
+	pGUI->ClearDrawArea();
+}
 // unselect all figures
 void ApplicationManager::UnselectAllFigures()
 {
@@ -184,7 +198,16 @@ void ApplicationManager::UnselectAllFigures()
 		FigList[i]->SetSelected(false);
 	}
 }
-
+//Resize Figure 
+void ApplicationManager::Resize_figure(float size) const {
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->IsSelected())
+		{
+			FigList[i]->ActionResizeFigure(pGUI, size);
+		}
+	}
+}
 // get the number of selected figures
 int ApplicationManager::getFigCount() const
 {
@@ -277,7 +300,12 @@ void ApplicationManager::Deleteselected() //Delete Selected Figures
 void ApplicationManager::UpdateInterface() const
 {
 	for (int i = 0; i < FigCount; i++)
-		FigList[i]->DrawMe(pGUI);		//Call Draw function (virtual member fn)
+		if (FigList[i]->HiddenStatus() == true) {
+
+		}
+		else {
+			FigList[i]->DrawMe(pGUI);
+		}		//Call Draw function (virtual member fn)
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the interface
@@ -323,3 +351,8 @@ int ApplicationManager::ExitMessage()
 
 	return msgboxID;
 }
+CFigure* ApplicationManager::DrawnFigs(int i) const
+{
+	return FigList[i];
+}
+

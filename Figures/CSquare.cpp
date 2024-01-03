@@ -11,7 +11,10 @@ CSquare::CSquare(Point P1, int len, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo
 	length = len;
 }
 
-
+void CSquare::SetID(int id)
+{
+	ID = id;
+}
 void CSquare::DrawMe(GUI* pGUI) const
 {
 	//Call Output::DrawRect to draw a Square on the screen	
@@ -52,5 +55,35 @@ void CSquare::Load(ifstream& Infile)
 	Infile >> drawColorString >> fill;//read colors from file into strings first to convert to color later
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
+}
+void CSquare::ActionResizeFigure(GUI* pGUI, float size) {
+	// Store the original length
+	float length_test = length;
+	// Store the original point
+	Point point1 = TopLeftCorner;
+	Point point2;
+	point2.x = point1.x + length;
+	point2.y = point1.y + length;
+	// Calculate the new length based on the size factor
+	length_test *= size;
+	// Calculate the coordinates of the opposite corner after resizin
+	point2.x = point1.x + length_test;
+	point2.y = point1.y + length_test;
+
+	// Update the coordinates of the square
+	TopLeftCorner = point1;
+	//check if square size is larger than the Area.
+	if (point1.y < UI.ToolBarHeight || point2.y > UI.height - UI.StatusBarHeight
+		|| point2.x > UI.width || point1.x < 1)
+	{
+		pGUI->PrintMessage("Square size will be more than Drawing Area:)");
+
+	}
+	else
+	{
+		// Update the coordinates of the square
+		TopLeftCorner = point1;
+		length = length_test;
+	}
 }
 

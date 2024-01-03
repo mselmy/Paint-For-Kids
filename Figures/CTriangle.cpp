@@ -64,3 +64,41 @@ void CTriangle::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+void CTriangle::ActionResizeFigure(GUI* pGUI, float size) {
+    // Store the original vertices of the triangle
+    Point originalV1 = P1;
+    Point originalV2 = P2;
+    Point originalV3 = P3;
+
+    // Calculate the centroid of the triangle
+    float centroidX = (P1.x + P2.x + P3.x) / 3.0;
+    float centroidY = (P1.y + P2.y + P3.y) / 3.0;
+
+    // Calculate the new coordinates based on the resizing factor
+    P1.x = centroidX + size * (P1.x - centroidX);
+    P1.y = centroidY + size * (P1.y - centroidY);
+
+    P2.x = centroidX + size * (P2.x - centroidX);
+    P2.y = centroidY + size * (P2.y - centroidY);
+
+    P3.x = centroidX + size * (P3.x - centroidX);
+    P3.y = centroidY + size * (P3.y - centroidY);
+
+    // Check if the resized triangle is within the drawing area
+    if (P1.y < UI.ToolBarHeight || P2.y < UI.ToolBarHeight || P3.y < UI.ToolBarHeight ||
+        P1.y > UI.height - UI.StatusBarHeight || P2.y > UI.height - UI.StatusBarHeight ||
+        P3.y > UI.height - UI.StatusBarHeight || P1.x < 1 || P2.x < 1 || P3.x < 1 ||
+        P1.x > UI.width || P2.x > UI.width || P3.x > UI.width)
+    {
+        // Restore the original vertices and print a message
+        P1 = originalV1;
+        P2 = originalV2;
+        P3 = originalV3;
+        pGUI->PrintMessage("Triangle size will be more than Drawing Area:)");
+    }
+}
+void CTriangle::SetID(int id)
+{
+    ID = id;
+}
+

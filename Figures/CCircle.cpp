@@ -8,7 +8,10 @@ CCircle::CCircle(Point P1, int _radius, GfxInfo FigureGfxInfo) : CFigure(FigureG
 	center = P1;
 	radius = _radius;
 }
-
+void CCircle::SetID(int id)
+{
+	ID = id;
+}
 
 void CCircle::DrawMe(GUI* pGUI) const 
 {
@@ -47,4 +50,23 @@ void CCircle::Load(ifstream& Infile)	//Load the figure parameters to the file
 	Infile >> fill;
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
+}
+void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
+	int newRadius = static_cast<int>(radius * size);
+
+	// Calculating the coordinates of the circle
+	int topLeftX = center.x - newRadius;
+	int topLeftY = center.y - newRadius;
+	int bottomRightX = center.x + newRadius;
+	int bottomRightY = center.y + newRadius;
+
+	// Check if the bounding box exceeds the drawing area
+	if (topLeftY < UI.ToolBarHeight || bottomRightY > UI.height - UI.StatusBarHeight || bottomRightX > UI.width || topLeftX < 1) {
+		// Print a message or handle the situation accordingly
+		pGUI->PrintMessage("Circle size will be more than Drawing Area:)");
+	}
+	else {
+		// Update the circle's properties
+		radius = newRadius;
+	}
 }

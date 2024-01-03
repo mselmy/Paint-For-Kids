@@ -34,7 +34,7 @@ public:
 	void ExecuteAction(Action*&) ; //Execute an action
 	void SetPoint(int, int); //Set x and y to coordinates of last selected menu action
 	void ResetPoint(); //Set x and y to -1
-	
+	void clearInterface();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
@@ -52,7 +52,8 @@ public:
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void reset(); //Resets the application and deletes all figures/
 
-
+	void Resize_figure(float size) const; //resize figure
+	CFigure* ApplicationManager::DrawnFigs(int i) const;//draw figs
 };
 
 #endif

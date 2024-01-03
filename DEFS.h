@@ -23,15 +23,22 @@ enum ActionType //The actions supported (you can add more if needed)
 	SAVE,			//Save the whole graph to a file
 	LOAD,			//Load a graph from a file
 	EXIT,			//Exit the application
-
+	PLAY_COLOR,
 	DRAWING_AREA,	//A click on the drawing area
 	STATUS,			//A click on the status bar
 	EMPTY,			//A click on empty place in the toolbar
 
 	TO_DRAW,		//Switch interface to Draw mode
-	TO_PLAY			//Switch interface to Play mode
+	TO_PLAY	,		//Switch interface to Play mode
 
 	///TODO: Add more action types (if needed)
+	//global constants for resize
+	PICK,          //pick by type in play mode
+	BACK,           //back to main page
+	QUARTER,         //QUARTER of shape size
+	HALF,           //half of shape size  
+	DOUBLE1,         //DOUBLE of shape size
+	QUADRUPLE,//QUADRUPLE of shape size
 };
 
 struct Point	//To be used for figures points

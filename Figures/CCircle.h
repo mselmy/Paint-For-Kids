@@ -15,9 +15,9 @@ public:
 	ApplicationManager* pManager = NULL;	//Actions needs AppMngr to do their job
 
 	CCircle(Point, int, GfxInfo FigureGfxInfo);
-
+	virtual void SetID(int id);
 	virtual void DrawMe(GUI* pOut) const;
-
+	void ActionResizeFigure(GUI* pGui, float size);// to resize circle
 
 	virtual bool IsPointInside(int, int) const;	//whether the point is inside the figure or not
 
