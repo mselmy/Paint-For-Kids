@@ -92,4 +92,5 @@ void ActionSave::Execute()
 	{
 		pGUI->PrintMessage("Error: Cannot open file to save");
 	}
+	pManager->setSavedState(true);
 }

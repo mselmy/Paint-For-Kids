@@ -48,4 +48,5 @@ void ActionChangeFill::Execute()
 	pGUI->ClearStatusBar();
 	pManager->UpdateInterface();
 	pManager->UnselectAllFigures();
+	pManager->setSavedState(false);
 }

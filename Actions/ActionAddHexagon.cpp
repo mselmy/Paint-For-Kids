@@ -80,4 +80,5 @@ void ActionAddHexagon::Execute()
 
 	//Step 4 - Add the Hexagon to the list of figures
 	pManager->AddFigure(H);
+	pManager->setSavedState(false);
 }

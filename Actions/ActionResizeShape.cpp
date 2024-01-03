@@ -56,6 +56,5 @@ void ActionResizeShape::Execute() {
 	else {
 		PGUI->PrintMessage("please select the shape first! ");
 	}
-
-
+	pManager->setSavedState(false);
 }

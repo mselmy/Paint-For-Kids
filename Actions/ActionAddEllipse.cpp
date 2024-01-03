@@ -72,6 +72,7 @@ void ActionAddEllipse::Execute()
 
 	//Step 4 - Add the Ellipse to the list of figures
 	pManager->AddFigure(R);
+	pManager->setSavedState(false);
 }
 
 

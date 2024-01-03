@@ -11,18 +11,23 @@
 #include "../Figures/CEllipse.h"
 #include "../Figures/CTriangle.h"
 #include "../Figures/CHexagon.h"
+#include "../Actions/ActionSave.h"
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
 
 void ActionLoad::Execute()
 {
-
-	if (pManager->getFigCount() != 0)
-	{
-		if (pManager->WarningMessage("You didn't save your Drawings, Do you want to save them?\nClick yes to save\nClick no to continoue without saving") == -1)
+		int reply = pManager->WarningMessage("You didn't save your Drawings, Do you want to save them?\nClick yes to save\nClick no to continoue without saving");
+		if (reply == IDCANCEL)
 			return;
-	}
+		else if (reply == IDYES)
+		{
+			Action* newAct = new ActionSave(pManager);
+			pManager->ExecuteAction(newAct);
+			delete newAct;
+		}
+	
 
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();

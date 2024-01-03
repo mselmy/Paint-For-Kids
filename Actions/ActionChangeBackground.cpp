@@ -47,4 +47,5 @@ void ActionChangeBackground::Execute()
 	pGUI->ClearDrawArea();
 	pGUI->ClearStatusBar();
 	pManager->UpdateInterface();
+	pManager->setSavedState(false);
 }

@@ -20,7 +20,7 @@ GUI::GUI()
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
 	UI.MsgColor = RED;		//Messages color
-	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
+	UI.BkGrndColor = WHITE;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = TURQUOISE;
 	UI.PenWidth = 3;	//width of the figures frames
@@ -290,23 +290,6 @@ void GUI::CreateReSizeBar()const {
 	pWind->SetPen(GREEN, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
-/*
-void GUI::CreatePlayToolBar() const//creation of play tool bar
-{
-	CreateToolBar();
-	UI.InterfaceMode = MODE_PLAY;
-	pWind->SetPen(PINK, 3);
-	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
-	string MenuePlayMode[PLAY_ITM_COUNT];
-	MenuePlayMode[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
-	MenuePlayMode[PICK_BY_TYPE] = "images\\MenuItems\\Menue_shapes.jpg";
-	for (int i = 0; i < PLAY_ITM_COUNT; i++) {
-		pWind->DrawImage(MenuePlayMode[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-	}
-
-
-
-}*/
 
 void GUI::CreateToolBar() const
 {
@@ -315,7 +298,6 @@ void GUI::CreateToolBar() const
 	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
-
 void GUI::ClearDrawArea() const
 {
 	pWind->SetPen(UI.BkGrndColor, 1);

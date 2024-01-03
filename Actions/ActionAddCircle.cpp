@@ -75,4 +75,5 @@ void ActionAddCircle::Execute()
 	
 	//Step 4 - Add the Circle to the list of figures
 	pManager->AddFigure(R);
+	pManager->setSavedState(false);
 }

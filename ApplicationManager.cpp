@@ -17,6 +17,7 @@
 #include "Actions/ActionResizeShape.h"
 #include "Actions/ActionPickByType.h"
 #include "Actions/ActionPickByColor.h"
+#include "Actions/ActionExit.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -31,6 +32,8 @@ ApplicationManager::ApplicationManager()
 	pGUI = new GUI;
 
 	FigCount = 0;
+	isSaved = true;
+	msgboxID = 0;
 
 	//Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++)
@@ -58,7 +61,7 @@ void ApplicationManager::Run()
 		//4- Update the interface
 		UpdateInterface();
 
-	} while (ActType != EXIT);
+	} while (ActType != EXIT || msgboxID == IDCANCEL);
 
 }
 
@@ -111,7 +114,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case LOAD:
 		newAct = new ActionLoad(this);
 		break;
-
     case BRING_TO_FRONT:
 		for (int j = 0; j < FigCount; j++) {
 			if (FigList[j]->IsSelected()) {
@@ -119,7 +121,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			}
 		}
 		break;
-	
 	case SEND_TO_BACK:
 		for (int i = FigCount - 1; i > 0; i--) {
 
@@ -129,7 +130,6 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 			}
 		}
 		break;
-      
 	case TO_PLAY:
 		newAct = new ActionToPlay(this);
 		break;
@@ -143,7 +143,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		newAct = new ActionPickByColor(this);
 		break;
 	case EXIT:
-		WarningMessage("You didn't sage your Drawings\nClick yes to save them\nClick no to Exit without saving");
+		newAct = new ActionExit(this);
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
 		newAct = new ActionSelectFigure(this);
@@ -422,31 +422,27 @@ ApplicationManager::~ApplicationManager()
 
 int ApplicationManager::WarningMessage(LPCSTR warningMessage)
 {
-	int msgboxID = MessageBox(
+	if (isSaved)
+		return -1;
+		msgboxID = MessageBox(
 		NULL, 
 		warningMessage,
 		"Warning",
 		MB_YESNOCANCEL | MB_ICONWARNING
 	);
-	switch (msgboxID)
-	{
-	case IDYES:
-	{
-		Action* newAct = new ActionSave(this);
-		ExecuteAction(newAct);
-		delete newAct;
-		break;
-	}
-	case IDNO:
-		break;
-
-	case IDCANCEL:
-		return -1;
-		break;
-	}
 	return msgboxID;
 }
 CFigure* ApplicationManager::DrawnFigs(int i) const
 {
 	return FigList[i];
+}
+
+bool ApplicationManager::getSavedState() //Returns the saved state of the file
+{
+		return isSaved;
+}
+
+void ApplicationManager::setSavedState(bool value) //Sets the saved state of the file
+{
+		isSaved = value;
 }

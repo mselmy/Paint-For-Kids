@@ -23,4 +23,5 @@ void Send_to_Back::Execute()
 		pGUI->PrintMessage("Please, Select a figure");
 		pManager->Set_LastMessage("Please, Select a figure");
 	}
+	pManager->setSavedState(false);
 }

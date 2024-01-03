@@ -25,6 +25,7 @@ void ActionDelete::Execute()
 	if (answer == "y" || answer == "Y")
 	{
 		pManager->Deleteselected();
+		pManager->setSavedState(false);
 	}
 	else
 	{
@@ -33,6 +34,5 @@ void ActionDelete::Execute()
 	}
 
 	pGUI->ClearStatusBar(); // clear Status bar
-
 	pGUI->ClearDrawArea(); //Clear all figures
 }
