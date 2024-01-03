@@ -65,6 +65,11 @@ void ActionAddEllipse::Execute()
 	//Step 3 - Create a Ellipse with the parameters read from the user
 	CEllipse* R = new CEllipse(P1, P2, SqrGfxInfo);
 
+	if (P1.x<0 || P1.y < UI.ToolBarHeight || P2.x > UI.width || P2.y >UI.height - UI.StatusBarHeight) {
+		pGUI->PrintMessage("You Can't Draw Ellipse");
+		return;
+	}
+
 	//Step 4 - Add the Ellipse to the list of figures
 	pManager->AddFigure(R);
 }

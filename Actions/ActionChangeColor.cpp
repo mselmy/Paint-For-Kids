@@ -54,4 +54,5 @@ void ActionChangeColor::Execute()
 	pGUI->ClearDrawArea();
 	pGUI->ClearStatusBar();
 	pManager->UpdateInterface();
+	pManager->UnselectAllFigures();
 }
