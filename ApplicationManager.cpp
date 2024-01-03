@@ -138,7 +138,7 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		break;
 
 	case EXIT:
-		ExitMessage();
+		WarningMessage("You didn't sage your Drawings\nClick yes to save them\nClick no to Exit without saving");
 		break;
 
 		break;
@@ -389,32 +389,34 @@ ApplicationManager::~ApplicationManager()
 	delete pGUI;
 
 }
+
 //==================================================================================//
-//							------EXIT WINDOW----------      						//
+//							------Warning message WINDOW----------      			//
 //==================================================================================//
 
-int ApplicationManager::ExitMessage()
+int ApplicationManager::WarningMessage(LPCSTR warningMessage)
 {
 	int msgboxID = MessageBox(
-		NULL,
-		"Are You Sure You Have Saved Your File?\n Click ok to Leave\nClick cancel to Save",
-		"Exit",
-		MB_OKCANCEL | MB_ICONWARNING
+		NULL, 
+		warningMessage,
+		"Warning",
+		MB_YESNOCANCEL | MB_ICONWARNING
 	);
-
 	switch (msgboxID)
 	{
-	case IDCANCEL:
+	case IDYES:
 	{
-
 		Action* newAct = new ActionSave(this);
 		ExecuteAction(newAct);
-	}
-	break;
-	case IDOK:
-		exit(0);
+		delete newAct;
 		break;
 	}
+	case IDNO:
+		break;
 
+	case IDCANCEL:
+		return -1;
+		break;
+	}
 	return msgboxID;
 }

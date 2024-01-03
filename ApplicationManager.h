@@ -57,6 +57,7 @@ public:
 	string LastMessage;//defin last message
 	int ExitMessage(); //// Action Exit
 	void Deleteselected(); // delete selected figure
+	int WarningMessage(LPCSTR); // warning message
 		
 	// -- Interface Management Functions	
 	GUI *GetGUI() const; //Return pointer to the interface
