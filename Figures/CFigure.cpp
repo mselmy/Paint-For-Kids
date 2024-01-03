@@ -55,6 +55,10 @@ color CFigure::stringToColor(string s)
 	c.ucBlue = b;
 	return c;
 }
+void CFigure::ChngFillStts(bool isFilled)
+{
+	FigGfxInfo.isFilled = isFilled;
+}
 
 void CFigure::seTDrawandFillClr(string drawColorString, string fill) // set the draw and fill color of the figure
 {

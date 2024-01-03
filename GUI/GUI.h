@@ -46,12 +46,13 @@ public:
 	///TODO: Make similar functions for drawing all other figures.
 	
 	void PrintMessage(string msg) const;	//Print a message on Status bar
-
+	void setCrntDrawColor(color) const; 	//set current drawing color
+	void setCrntFillColor(color, bool = true) const;	//set current fill color
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
 	color getBackgroundColor() const; //get current background color
 	int getCrntPenWidth() const;		//get current pen width
-
+	void setCrntBackgroundColor(color) const; // set current background color
 
 };
 
