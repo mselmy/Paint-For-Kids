@@ -12,6 +12,8 @@ private:
 	Point P1, P2;
 
 public:
+	virtual CEllipse* Clone() const;
+
 	ApplicationManager* pManager = NULL;	//Actions needs AppMngr to do their job
 
 	CEllipse(Point, Point, GfxInfo FigureGfxInfo);

@@ -64,3 +64,6 @@ void CTriangle::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CTriangle* CTriangle::Clone() const {
+	return new CTriangle(*this);
+}

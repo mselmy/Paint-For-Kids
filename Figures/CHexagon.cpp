@@ -49,3 +49,7 @@ void CHexagon::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CHexagon* CHexagon::Clone() const
+{
+	return new CHexagon(*this); // Assuming you have a copy constructor for CEllipse
+}

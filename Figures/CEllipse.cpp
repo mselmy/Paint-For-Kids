@@ -57,3 +57,7 @@ void CEllipse::Load(ifstream& Infile)	//Load the figure parameters to the file
 
 	seTDrawandFillClr(drawColorString, fill); //set the draw and fill colors
 }
+CEllipse* CEllipse::Clone() const
+{
+	return new CEllipse(*this);
+}
