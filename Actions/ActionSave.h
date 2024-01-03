@@ -11,9 +11,6 @@ public:
 	// template function to print elements in a table
 	template<typename T> void saveElement(ofstream& outFile, T t, const int& width, const char& separator);
 
-	//convert color to string
-	string colorToString(color c);
-
 	//execute action
 	void ActionSave::Execute();
 };

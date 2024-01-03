@@ -23,6 +23,49 @@ class color {
     unsigned char ucGreen;
     unsigned char ucBlue;
 
+    // convert color to string
+    string static colorToString(color c)
+    {
+        string s = "(" + to_string(c.ucRed) + "," + to_string(c.ucGreen) + "," + to_string(c.ucBlue) + ")";
+        return s;
+    }
+
+	// convert string to color
+	color static stringToColor(string s)
+	{
+		int r, g, b;
+		int i = 1;
+		string temp = "";
+		while (s[i] != ',')
+		{
+			temp += s[i];
+			i++;
+		}
+		r = stoi(temp);
+		i++;
+		temp = "";
+		while (s[i] != ',')
+		{
+			temp += s[i];
+			i++;
+		}
+		g = stoi(temp);
+		i++;
+		temp = "";
+		while (s[i] != ')')
+		{
+			temp += s[i];
+			i++;
+		}
+		b = stoi(temp);
+		color c;
+		c.ucRed = r;
+		c.ucGreen = g;
+		c.ucBlue = b;
+		return c;
+	}
+	
+
 };
 
 bool operator==(color a, color b);

@@ -13,8 +13,8 @@ ActionSave::ActionSave(ApplicationManager* pApp) :Action(pApp)
 
 //set the width of the columns in the file
 const char separator = ' ';
-const int stringWidth = 12;
-const int numWidth = 6;
+const int stringWidth = 24;
+const int numWidth = 12;
 
 //template function to print elements in a table
 template<typename T> void ActionSave::saveElement(ofstream& outFile, T content, const int& width, const char& separator)
@@ -22,12 +22,6 @@ template<typename T> void ActionSave::saveElement(ofstream& outFile, T content, 
 	outFile << left << setw(width) << setfill(separator) << content;
 }
 
-// convert color to string
-string ActionSave::colorToString(color c)
-{
-	string s = "(" + to_string(c.ucRed) + "," + to_string(c.ucGreen) + "," + to_string(c.ucBlue) + ")";
-	return s;
-}
 
 void ActionSave::Execute()
 {
@@ -71,15 +65,15 @@ void ActionSave::Execute()
 	{
 		//get current the drawing colors
 		color drawing_color = pGUI->getCrntDrawColor();
-		string drawingcolorstring = colorToString(drawing_color);
+		string drawingcolorstring = color::colorToString(drawing_color);
 
 		//get current the filling colors
 		color filling_color = pGUI->getCrntFillColor();
-		string fillingcolorstring = colorToString(filling_color);
+		string fillingcolorstring = color::colorToString(filling_color);
 
 		//get current background color
 		color background_color = pGUI->getBackgroundColor();
-		string backgroundcolorstring = colorToString(background_color);
+		string backgroundcolorstring = color::colorToString(background_color);
 
 		//save drawing, filling and background colors to file
 		saveElement(outFile, drawingcolorstring, stringWidth, separator);

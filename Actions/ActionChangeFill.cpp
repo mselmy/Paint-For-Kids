@@ -23,11 +23,6 @@ void ActionChangeFill::Execute()
 
 	pGUI->PrintMessage("Please choose the fill color");
 	pGUI->GetPointClicked(P.x, P.y);
-	//Read point and store in point P
-	/*if (!pGUI->GetPointClicked(P.x, P.y)) {
-		pManager->SetPoint(P.x, P.y);
-		return;
-	}*/
 
 	if (P.x < UI.MenuItemWidth * itemsCount && P.y > UI.ToolBarHeight && P.y < UI.ToolBarHeight * 2)
 	{
@@ -52,4 +47,5 @@ void ActionChangeFill::Execute()
 	pGUI->ClearDrawArea();
 	pGUI->ClearStatusBar();
 	pManager->UpdateInterface();
+	pManager->UnselectAllFigures();
 }

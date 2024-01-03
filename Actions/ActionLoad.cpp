@@ -58,15 +58,16 @@ void ActionLoad::Execute()
 
 	//load data
 	string  drawColor, fillColor, bgColor;
-
 	inFile >> drawColor >> fillColor >> bgColor;//read header data
+	
 	//set current colors to GUI
-		
+	pGUI->setCrntDrawColor(color::stringToColor(drawColor));
+	pGUI->setCrntFillColor(color::stringToColor(fillColor));
+	pGUI->setCrntBackgroundColor(color::stringToColor(bgColor));
+
 	int figCount;
 	inFile >> figCount;//read fig count
 
-
-	//FigCount = figCount;//set fig count
 	//initialize paramters
 	int figType = -1;
 	CFigure* figure = nullptr;
@@ -84,7 +85,6 @@ void ActionLoad::Execute()
 
 	for (int i = 0; i < figCount; i++)
 	{
-
 		inFile >> figType;
 		switch (figType)
 		{
