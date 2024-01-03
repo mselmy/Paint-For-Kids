@@ -19,8 +19,8 @@ public:
 	CEllipse(Point, Point, GfxInfo FigureGfxInfo);
 	
 	virtual void DrawMe(GUI* pOut) const;
-	
-
+	void ActionResizeFigure(GUI* pGui, float size);// to resize ellipse
+	virtual void SetID(int id);
 	virtual bool IsPointInside(int, int) const;	//whether the point is inside the figure or not
 
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file

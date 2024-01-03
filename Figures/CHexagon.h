@@ -20,9 +20,9 @@ public:
 	CHexagon(Point, Point, GfxInfo FigureGfxInfo);
 	
 	virtual void DrawMe(GUI* pOut) const;
-
+	virtual void SetID(int id);
 	virtual bool IsPointInside(int, int) const;	//whether the point is inside the figure or not
-
+	void ActionResizeFigure(GUI* pGui, float size);// to resize hexagon
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file
 	virtual void Load(ifstream& Infile);	//Load the figure parameters to the file
 };

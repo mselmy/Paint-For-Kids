@@ -102,8 +102,11 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_HEXA: return DRAW_HEX;
 			case ITM_CIRC: return DRAW_CIRC;
 			case ITM_TRNG: return DRAW_TRA;
+			case ITM_RESIZE: return RESIZE;
+			case ITM_PLAY:return TO_PLAY;
 			case ITM_CLR: return CHNG_DRAW_CLR;
 			case ITM_BG: return CHNG_BG_CLR;
+			case ITM_PICK_COLOR:return PLAY_COLOR;
 			case ITM_FILL: return CHNG_FILL_CLR;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
@@ -150,15 +153,48 @@ ActionType GUI::MapInputToActionType() const
 		return STATUS;
 		//return TO_PLAY;	//just for now. This should be updated
 	}
-
-	else	//GUI is in PLAY mode
+	else if (UI.InterfaceMode == MODE_RESIZE) // get in resize mode
 	{
-		///TODO:
-		//perform checks similar to Draw mode checks above
-		//and return the correspoding action
-		return TO_PLAY;	//just for now. This should be updated
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && y < UI.ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / UI.MenuItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+			switch (ClickedItemOrder)
+			{
+			case ITM_BACK:
+				return BACK;
+			case ITM_QUARTER:
+				return QUARTER;
+			case ITM_HALF:
+				return HALF;
+			case ITM_DOUBLE:
+				return DOUBLE1;
+			case ITM_QUADRAPLE:
+				return QUADRUPLE;
+			default: return EMPTY;
+			}
+		}
 	}
+	else if (UI.InterfaceMode == MODE_PLAY) {//get play mode
+		int ClickedItemOrder = (x / UI.MenuItemWidth);
+		//Divide x coord of the point clicked by the menu item width (int division)
+		//If division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+		switch (ClickedItemOrder)
+		{
+		case ITM_BACK1://back item
+			return BACK;
+		case PICK_BY_TYPE://first play part(pick by type).
+			return PICK;
+	//	case ITM_PICK_COLOR:
+		//	return PLAY_COLOR;
 
+		default: return EMPTY;
+		}
+	}
 }
 //======================================================================================//
 //								Output Functions										//
@@ -202,10 +238,12 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_SQUR] = "images\\MenuItems\\Menu_Sqr.jpg";
 	MenuItemImages[ITM_ELPS] = "images\\MenuItems\\Menu_Elps.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_PICK_COLOR] = "images\\MenuItems\\pick_color.jpg";
 	//TODO: Prepare images for each menu item and add it to the list
 	MenuItemImages[ITM_HEXA] = "images\\MenuItems\\Menu_Hex.jpg";
-	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circle.jpg";
+	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circle.jpg";//
 	MenuItemImages[ITM_TRNG] = "images\\MenuItems\\Menu_Tri.jpg";
+	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\Menue_playMode.jpg";
 	MenuItemImages[ITM_BG] = "images\\MenuItems\\MenuBackground.jpg";
 	MenuItemImages[ITM_CLR] = "images\\MenuItems\\MenuColor.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\MenuFill.jpg";
@@ -215,6 +253,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_BRING_TO_FRONT] = "images\\MenuItems\\Bring_To_Front.jpg";
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\PlayMode.jpg";
+	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Menu_resize.jpg";
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
@@ -228,7 +267,6 @@ void GUI::CreateDrawToolBar() const
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
-
 void GUI::CreatePlayToolBar() const
 {///TODO: write code to create Play mode menu
 		
@@ -249,6 +287,52 @@ void GUI::CreatePlayToolBar() const
 		//Draw a line under the toolbar
 		pWind->SetPen(RED, 3);
 		pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+  }
+//Resize 
+void GUI::CreateReSizeBar()const {
+	CreateToolBar();
+	//determine mode type
+	UI.InterfaceMode = MODE_RESIZE;
+	//create resize menue images
+	//define array (size is num of items).
+	string MenueResizeItemImages[RESIZE_ITM_COUNT];
+	MenueResizeItemImages[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
+	MenueResizeItemImages[ITM_QUARTER] = "images\\MenuItems\\Menue_Quarter.jpg";
+	MenueResizeItemImages[ITM_HALF] = "images\\MenuItems\\Menue_Half.jpg";
+	MenueResizeItemImages[ITM_DOUBLE] = "images\\MenuItems\\Menue_Double.jpg";
+	MenueResizeItemImages[ITM_QUADRAPLE] = "images\\MenuItems\\Menue_Quad.jpg";
+	
+	//Draw resize menu item on GUI Screen. 
+	for (int i = 0; i < RESIZE_ITM_COUNT; i++) {
+
+		pWind->DrawImage(MenueResizeItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+	}
+	//Draw a line under the toolbar
+	pWind->SetPen(GREEN, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+}
+void GUI::CreatePlayToolBar() const//creation of play tool bar
+{
+	CreateToolBar();
+	UI.InterfaceMode = MODE_PLAY;
+	pWind->SetPen(PINK, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	string MenuePlayMode[PLAY_ITM_COUNT];
+	MenuePlayMode[ITM_BACK1] = "images\\MenuItems\\Menue_Back.jpg";
+	MenuePlayMode[PICK_BY_TYPE] = "images\\MenuItems\\Menue_shapes.jpg";
+	for (int i = 0; i < PLAY_ITM_COUNT; i++) {
+		pWind->DrawImage(MenuePlayMode[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+	}
+
+
+
+}
+
+void GUI::CreateToolBar() const
+{
+	pWind->SetPen(WHITE, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 

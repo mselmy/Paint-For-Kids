@@ -19,8 +19,10 @@ public:
 	virtual bool IsPointInside(int x, int y) const; //whether the point is inside the figure or not
 
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file
-
+	virtual void SetID(int id);
 	void	Load(ifstream& Infile);	//Load the figure parameters to the file
+
+	void ActionResizeFigure(GUI* pGui, float size);// to resize square
 
 };
 

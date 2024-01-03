@@ -9,7 +9,10 @@ CEllipse::CEllipse(Point _P1, Point _P2, GfxInfo FigureGfxInfo) : CFigure(Figure
 	P2 = _P2;
 }
 //CEllipse::CEllipse() {}
-
+void CEllipse::SetID(int id)
+{
+	ID = id;
+}
 void CEllipse::DrawMe(GUI* pGUI) const
 {
 	//Call Output::DrawCircle to draw a Circle on the screen	
@@ -61,3 +64,33 @@ CEllipse* CEllipse::Clone() const
 {
 	return new CEllipse(*this);
 }
+void CEllipse::ActionResizeFigure(GUI* pGUI, float size) {
+
+
+	Point point1 = P1, point2 = P2;
+	if (size == .5) size = -0.5;
+	else if (size == .25) size = -(4.0 / 3);
+	else if (size == 2) size = 1;
+	else size = 4;
+	// half radius (horizontal x && vertical y)
+	float deltaX, deltaY;
+	deltaX = 0.5 * (P2.x - P1.x);
+	deltaY = 0.5 * (P2.y - P1.y);
+	//new width and height based on the resizing factor
+	point1.x -= deltaX * size;
+	point2.x += deltaX * size;
+	point1.y -= deltaY * size;
+	point2.y += deltaY * size;
+	//check if size of elipse is larger than the draw area
+	if (point1.y < UI.ToolBarHeight || point2.y > UI.height - UI.StatusBarHeight
+		|| point2.x > UI.width || point1.x < 1)
+	{
+		pGUI->PrintMessage("Ellips size will be more than Drawing Area:)");
+	}
+	else
+	{
+		//updating the two points
+		P1 = point1;
+		P2 = point2;
+
+	}

@@ -53,3 +53,34 @@ CHexagon* CHexagon::Clone() const
 {
 	return new CHexagon(*this); // Assuming you have a copy constructor for CEllipse
 }
+void CHexagon::ActionResizeFigure(GUI* pGUI, float size) {//resize hexagon
+	Point point1 = TopLeftCorner;
+	Point point2 = BottomRightCorner;
+
+	if (size == 0.5) size = -0.5;
+	else if (size == 0.25) size = -(4.0 / 3);
+	else if (size == 2) size = 1;
+	else size = 4;
+
+	// Calculate half of the horizontal and vertical lengths
+	float deltaX = 0.5 * (point2.x - point1.x);
+	float deltaY = 0.5 * (point2.y - point1.y);
+
+	// Calculate new coordinates based on the resizing factor
+	point1.x -= deltaX * size;
+	point2.x += deltaX * size;
+	point1.y -= deltaY * size;
+	point2.y += deltaY * size;
+
+	// Check if the resized hexagon is within the drawing area
+	if (point1.y < UI.ToolBarHeight || point2.y > UI.height - UI.StatusBarHeight ||
+		point2.x > UI.width || point1.x < 1)
+	{
+		pGUI->PrintMessage("Hexagon size will be more than Drawing Area:)");
+	}
+	else {
+		// Update the TopLeftCorner and BottomRightCorner
+		TopLeftCorner = point1;
+		BottomRightCorner = point2;
+	}
+}

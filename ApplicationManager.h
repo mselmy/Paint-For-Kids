@@ -38,7 +38,7 @@ public:
 	void ExecuteAction(Action*&) ; //Execute an action
 	void SetPoint(int, int); //Set x and y to coordinates of last selected menu action
 	void ResetPoint(); //Set x and y to -1
-	
+	void clearInterface();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig); //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
@@ -68,6 +68,8 @@ public:
 
 	void restoreFigList();
 
+	void Resize_figure(float size) const; //resize figure
+	CFigure* DrawnFigs(int i) const;//draw figs
 };
 
 #endif
