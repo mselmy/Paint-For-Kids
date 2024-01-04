@@ -254,11 +254,11 @@ void GUI::CreatePlayToolBar() const
 	ClearToolBarArea();
 		UI.InterfaceMode = MODE_PLAY;
 		string PlayMenuImages[PLAY_ITM_COUNT];
-		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\pick_color.jpg";
+		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\Menue_Shapes.jpg";
 		PlayMenuImages[PLAY_FILL] = "images\\MenuItems\\Menue_Colors.jpg";
-		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\typeandfill.jpg";
+		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\Menu_Type_Color.jpg";
 		//PlayMenuImages[PLAY_RESET] = "images\\MenuItems\\newgame.jpg";
-		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\back.jpeg";
+		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\Menu_Back.jpg";
 
 		//TODO: Prepare images for each menu item and add it to the list
 		//Draw menu item one image at a time
@@ -277,7 +277,7 @@ void GUI::CreateReSizeBar()const {
 	//create resize menue images
 	//define array (size is num of items).
 	string MenueResizeItemImages[RESIZE_ITM_COUNT];
-	MenueResizeItemImages[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
+	MenueResizeItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
 	MenueResizeItemImages[ITM_QUARTER] = "images\\MenuItems\\Menue_Quarter.jpg";
 	MenueResizeItemImages[ITM_HALF] = "images\\MenuItems\\Menue_Half.jpg";
 	MenueResizeItemImages[ITM_DOUBLE] = "images\\MenuItems\\Menue_Double.jpg";

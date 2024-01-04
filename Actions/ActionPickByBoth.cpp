@@ -60,6 +60,7 @@ void ActionPickByBoth::Execute()
 			pickedFigureCount = figs_colors[PCIRCLE][getenum(figColor)];
 			break;
 		case ITM_ELPS:
+			pickedFigureCount = figs_colors[PELLIPSE][getenum(figColor)];
 			break;
 		case ITM_HEXA:
 			pickedFigureCount = figs_colors[PHEXAGON][getenum(figColor)];
@@ -80,7 +81,7 @@ void ActionPickByBoth::Execute()
 				if (clickedFig != NULL)
 				{
 
-					if ((clickedFig->type() == Fig->type()) && (getenum(clickedFig->GetGfxInfo().FillClr) == getenum(figColor)))
+					if ((clickedFig->type() == Fig->type()) && ((getenum(clickedFig->GetGfxInfo().FillClr) == getenum(figColor)) || clickedFig->GetGfxInfo().isFilled == false))
 					{
 						calcScore(1);
 						clickedFig->Hide();
@@ -173,8 +174,11 @@ void ActionPickByBoth::GetFilledShape()
 	for (int i = 0; i < pManager->getFigCount(); i++) {
 		Fig = pManager->DrawnFigs(i);
 
-		// counting colors exists
-		figs_colors[Fig->type()][getenum(Fig->GetGfxInfo().FillClr)]++;
+		// get filled shapes count
+		if(Fig->GetGfxInfo().isFilled)
+			figs_colors[Fig->type()][getenum(Fig->GetGfxInfo().FillClr)]++;
+		else
+			figs_colors[Fig->type()][PNOFILL]++;
 	}
 }
 
