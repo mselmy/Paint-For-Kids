@@ -25,6 +25,8 @@ public:
 	void ActionResizeFigure(GUI* pGui, float size);// to resize hexagon
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file
 	virtual void Load(ifstream& Infile);	//Load the figure parameters to the file
+	virtual void move(int& dx, int& dy);	//move a figure
+
 };
 
 #endif

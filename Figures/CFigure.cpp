@@ -65,3 +65,6 @@ GfxInfo CFigure::GetGfxInfo()
 {
 	return FigGfxInfo;
 }
+
+void CFigure::move(int& dx, int& dy)
+{}

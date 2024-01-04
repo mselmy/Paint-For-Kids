@@ -73,3 +73,10 @@ void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
 		radius = newRadius;
 	}
 }
+
+void CCircle::move(int& dx, int& dy)
+{
+	//changing drawing point
+	center.x += dx;
+	center.y += dy;
+}

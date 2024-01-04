@@ -7,7 +7,7 @@ GUI::GUI()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 
-	UI.width = 1300;
+	UI.width = 1380;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
@@ -106,6 +106,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_PLAY:return TO_PLAY;
 			case ITM_CLR: return CHNG_DRAW_CLR;
 			case ITM_BG: return CHNG_BG_CLR;
+			case ITM_DRAG: return DRAG;
 			case ITM_FILL: return CHNG_FILL_CLR;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
@@ -233,6 +234,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\PlayMode.jpg";
 	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Menu_resize.jpg";
+	MenuItemImages[ITM_DRAG] = "images\\MenuItems\\Menu_Drag.jpg";
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)

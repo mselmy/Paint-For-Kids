@@ -95,3 +95,12 @@ void CEllipse::ActionResizeFigure(GUI* pGUI, float size) {
 
 	}
 }
+
+void CEllipse::move(int& dx, int& dy)
+{
+	//changing drawing point
+	P1.x += dx;
+	P1.y += dy;
+	P2.x += dx;
+	P2.y += dy;
+}

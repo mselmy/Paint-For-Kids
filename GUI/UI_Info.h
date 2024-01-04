@@ -29,6 +29,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_CLR,
 	ITM_BG,			//Change background color
 	ITM_FILL,		//Change shape filling
+	ITM_DRAG,		//Drag and drop
 	ITM_RESIZE,//Change shape color
 	ITM_SEND_TO_BACK,// Send_to_back
 	ITM_BRING_TO_FRONT,// brnig to front

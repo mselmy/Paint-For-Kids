@@ -104,3 +104,14 @@ void CTriangle::SetID(int id)
 {
     ID = id;
 }
+
+void CTriangle::move(int& dx, int& dy)
+{
+	//changing drawing point
+	P1.x += dx;
+	P1.y += dy;
+	P2.x += dx;
+	P2.y += dy;
+	P3.x += dx;
+	P3.y += dy;
+}

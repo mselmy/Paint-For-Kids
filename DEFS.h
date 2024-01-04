@@ -20,8 +20,9 @@ enum ActionType //The actions supported (you can add more if needed)
 	ROTATE,			//Rotate a figure(s)
 	SEND_TO_BACK,		//Send a figure to the back of all figures
 	BRING_TO_FRONT,		//Bring a figure to the front of all figures
-  SAVE,			//Save the whole graph to a file
+	SAVE,			//Save the whole graph to a file
 	LOAD,			//Load a graph from a file
+	DRAG,			//Drag and drop
 	EXIT,			//Exit the application
 	TO_DRAW,		//Switch interface to Draw mode
 	TO_PLAY,		//Switch interface to Play mode

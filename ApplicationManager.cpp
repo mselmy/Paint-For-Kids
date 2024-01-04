@@ -18,6 +18,7 @@
 #include "Actions/ActionPickByType.h"
 #include "Actions/ActionPickByColor.h"
 #include "Actions/ActionExit.h"
+#include "Actions/ActionDrag.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -107,6 +108,9 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 		break;
 	case CHNG_FILL_CLR:
 		newAct = new ActionChangeFill(this);
+		break;
+	case DRAG:
+		newAct = new ActionDrag(this);
 		break;
 	case SAVE:
 		newAct = new ActionSave(this);

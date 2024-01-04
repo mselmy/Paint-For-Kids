@@ -24,14 +24,14 @@ class color {
     unsigned char ucBlue;
 
     // convert color to string
-    string static colorToString(color c)
+    string static colorToString(color& c)
     {
         string s = "(" + to_string(c.ucRed) + "," + to_string(c.ucGreen) + "," + to_string(c.ucBlue) + ")";
         return s;
     }
 
 	// convert string to color
-	color static stringToColor(string s)
+	color static stringToColor(string& s)
 	{
 		int r, g, b;
 		int i = 1;
