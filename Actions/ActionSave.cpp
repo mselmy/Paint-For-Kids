@@ -50,16 +50,17 @@ void ActionSave::Execute()
 			pGUI->PrintMessage("Saving is Canceled");
 			return;
 		}
+		else if (fileName.find_first_of("\\/:*?\"<>|") != string::npos)
+		{}
 		else if (fileName.length()<=4 || fileName.substr(fileName.length() - 4) != ".txt")
 			fileName += ".txt";
-
-		//open file and save all figures
-		//create ofstream object
-		//open file in write mode and truncate it if it already exists
-		outFile.open("Saved_Files/" + fileName, ios::out | ios::trunc);
-
-	} while (!outFile.is_open());
+	} while (fileName.find_first_of("\\/:*?\"<>|") != string::npos);
 	
+	//open file and save all figures
+
+	//open file in write mode and truncate it if it already exists
+	outFile.open("Saved_Files/" + fileName, ios::out | ios::trunc);
+
 	//check if file is open
 	if (outFile.is_open())
 	{
