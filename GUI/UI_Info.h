@@ -68,6 +68,34 @@ enum ResizeMenueItems //items of resize menu
 	RESIZE_ITM_COUNT,
 };
 
+enum PlayColor //items of play color menu
+{
+	PWHITE,
+	PBLACK,
+	PBROWN,
+	PPURPLE,
+	PPINK,
+	PRED,
+	PORANGE,
+	PYELLOW,
+	PGREEN,
+	PBLUE,
+	PNOFILL,
+
+	PCOLORCOUNT
+};
+
+enum PlayShapes //items of play shapes menu
+{
+	PSQUARE,
+	PELLIPSE,
+	PHEXAGON,
+	PCIRCLE,
+	PTRIANGLE,
+
+	PSHAPECOUNT
+};
+
 
 
 __declspec(selectany) //This line to prevent "redefinition error"

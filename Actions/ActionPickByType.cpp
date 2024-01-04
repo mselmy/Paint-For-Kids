@@ -220,7 +220,7 @@ void ActionPickByType::Execute()
 				pManager->DrawnFigs(i)->Show();
 			}
 		}
-		/*/else
+		/*else
 		{
 			pGUI->PrintMessage("You must have at least two types of figures to play ! ");
 		}

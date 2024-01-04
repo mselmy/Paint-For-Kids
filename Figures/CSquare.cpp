@@ -96,3 +96,8 @@ void CSquare::move(int& dx, int& dy)
 	TopLeftCorner.x += dx;
 	TopLeftCorner.y += dy;
 }
+
+int CSquare::type()
+{
+	return PSQUARE;
+}

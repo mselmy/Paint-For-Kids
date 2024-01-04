@@ -25,6 +25,8 @@ public:
 	void ActionResizeFigure(GUI* pGui, float size);// to resize square
 
 	virtual void move(int& dx, int& dy); //to move the figure
+
+	virtual int  type();	//Return string of the figure type
 };
 
 

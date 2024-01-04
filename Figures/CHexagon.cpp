@@ -120,3 +120,9 @@ void CHexagon::move(int& dx, int& dy)
 	BottomRightCorner.x += dx;
 	BottomRightCorner.y += dy;
 }
+
+int CHexagon::type()
+{
+ return PHEXAGON;
+
+}

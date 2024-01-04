@@ -80,3 +80,8 @@ void CCircle::move(int& dx, int& dy)
 	center.x += dx;
 	center.y += dy;
 }
+
+int CCircle::type()
+{
+	return PCIRCLE;
+}

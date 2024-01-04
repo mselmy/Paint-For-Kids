@@ -51,6 +51,7 @@ public:
 	void seTDrawandFillClr(string, string); // set the draw and fill color of the figure
 	GfxInfo CFigure::GetGfxInfo();
 	virtual void move(int& dx, int& dy) = 0; //to move the figure
+	virtual int type() = 0;	//Return string of the figure type
 
 };
 
