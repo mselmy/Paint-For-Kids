@@ -104,3 +104,8 @@ void CEllipse::move(int& dx, int& dy)
 	P2.x += dx;
 	P2.y += dy;
 }
+int CEllipse::type()
+{
+	return PELLIPSE;
+			
+}

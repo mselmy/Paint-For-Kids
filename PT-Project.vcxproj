@@ -141,6 +141,7 @@
     <ClCompile Include="Actions\ActionDrag.cpp" />
     <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionLoad.cpp" />
+    <ClCompile Include="Actions\ActionPickByBoth.cpp" />
     <ClCompile Include="Actions\ActionPickByColor.cpp" />
     <ClCompile Include="Actions\ActionPickByType.cpp" />
     <ClCompile Include="Actions\ActionResizeShape.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Actions\ActionDrag.h" />
     <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionLoad.h" />
+    <ClInclude Include="Actions\ActionPickByBoth.h" />
     <ClInclude Include="Actions\ActionPickByColor.h" />
     <ClInclude Include="Actions\ActionPickByType.h" />
     <ClInclude Include="Actions\ActionResizeShape.h" />

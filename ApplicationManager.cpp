@@ -19,6 +19,7 @@
 #include "Actions/ActionPickByColor.h"
 #include "Actions/ActionExit.h"
 #include "Actions/ActionDrag.h"
+#include "Actions/ActionPickByBoth.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -146,13 +147,15 @@ Action* ApplicationManager::CreateAction(ActionType ActType)
 	case ACTION_PLAY_FILL:
 		newAct = new ActionPickByColor(this);
 		break;
+	case ACTION_PLAY_TYPEFILL:
+		newAct = new ActionPickByBoth(this);
+		break;
 	case EXIT:
 		newAct = new ActionExit(this);
 		break;
 	case DRAWING_AREA:	//a click on the drawing area
 		newAct = new ActionSelectFigure(this);
 		break;
-
 	case STATUS:	//a click on the status bar ==> no action
 		return NULL;
 		break;
