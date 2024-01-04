@@ -20,6 +20,9 @@ private:
 	CFigure* FigListBackup[MaxFigCount];	//Clone version of FigList (Array of pointers)
 	CFigure* selectedfigure; //The Selected Figure
 
+	bool isSaved; //Checks if the file is saved or not
+	int msgboxID; //ID of the message box
+
 	//Pointers to Input and Output classes
 	GUI* pGUI;
 	//Current coordinates of selected menu action
@@ -55,7 +58,6 @@ public:
 
 	void Set_LastMessage(string);//saving last messages
 	string LastMessage;//defin last message
-	int ExitMessage(); //// Action Exit
 	void Deleteselected(); // delete selected figure
 	int WarningMessage(LPCSTR); // warning message
 		
@@ -70,6 +72,10 @@ public:
 
 	void Resize_figure(float size) const; //resize figure
 	CFigure* DrawnFigs(int i) const;//draw figs
+
+	bool getSavedState(); //Returns the saved state of the file
+	void setSavedState(bool); //Sets the saved state of the file
+
 };
 
 #endif

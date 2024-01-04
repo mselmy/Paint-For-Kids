@@ -89,3 +89,15 @@ void CSquare::ActionResizeFigure(GUI* pGUI, float size) {
 		length = length_test;
 	}
 }
+
+void CSquare::move(int& dx, int& dy)
+{
+	//changing drawing point
+	TopLeftCorner.x += dx;
+	TopLeftCorner.y += dy;
+}
+
+int CSquare::type()
+{
+	return PSQUARE;
+}

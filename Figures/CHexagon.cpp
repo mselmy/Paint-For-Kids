@@ -111,3 +111,18 @@ void CHexagon::SetID(int id)
 {
 	ID = id;
 }
+
+void CHexagon::move(int& dx, int& dy)
+{
+	//changing drawing point
+	TopLeftCorner.x += dx;
+	TopLeftCorner.y += dy;
+	BottomRightCorner.x += dx;
+	BottomRightCorner.y += dy;
+}
+
+int CHexagon::type()
+{
+ return PHEXAGON;
+
+}

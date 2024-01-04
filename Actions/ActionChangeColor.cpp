@@ -33,25 +33,12 @@ void ActionChangeColor::Execute()
 		color clcikedcolor = pGUI->pWind->GetColor(P.x, P.y);
 		pGUI->setCrntDrawColor(clcikedcolor);
 		pManager->UpdateFigureColor(clcikedcolor);
-
-		/*int colorOrder = P.x / UI.MenuItemWidth;
-		switch (colorOrder)
-		{
-		case 0: pGUI->setCrntDrawColor(WHITE); pManager->UpdateFigureColor(WHITE); break;
-		case 1: pGUI->setCrntDrawColor(BLACK); pManager->UpdateFigureColor(BLACK); break;
-		case 2: pGUI->setCrntDrawColor(BROWN); pManager->UpdateFigureColor(BROWN); break;
-		case 3: pGUI->setCrntDrawColor(PURPLE); pManager->UpdateFigureColor(PURPLE); break;
-		case 4: pGUI->setCrntDrawColor(PINK); pManager->UpdateFigureColor(PINK); break;
-		case 5: pGUI->setCrntDrawColor(RED); pManager->UpdateFigureColor(RED); break;
-		case 6: pGUI->setCrntDrawColor(ORANGE); pManager->UpdateFigureColor(ORANGE); break;
-		case 7: pGUI->setCrntDrawColor(YELLOW); pManager->UpdateFigureColor(YELLOW); break;
-		case 8: pGUI->setCrntDrawColor(GREEN); pManager->UpdateFigureColor(GREEN); break;
-		case 9: pGUI->setCrntDrawColor(BLUE); pManager->UpdateFigureColor(BLUE); break;
-		}*/
 	}
 	else
 		pManager->ResetPoint();
 	pGUI->ClearDrawArea();
 	pGUI->ClearStatusBar();
 	pManager->UpdateInterface();
+	pManager->UnselectAllFigures();
+	pManager->setSavedState(false);
 }

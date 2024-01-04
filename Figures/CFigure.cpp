@@ -26,39 +26,6 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
-color CFigure::stringToColor(string s)
-{
-	int r, g, b;
-	int i = 1;
-	string temp = "";
-	while (s[i] != ',')
-	{
-		temp += s[i];
-		i++;
-	}
-	r = stoi(temp);
-	i++;
-	temp = "";
-	while (s[i] != ',')
-	{
-		temp += s[i];
-		i++;
-	}
-	g = stoi(temp);
-	i++;
-	temp = "";
-	while (s[i] != ')')
-	{
-		temp += s[i];
-		i++;
-	}
-	b = stoi(temp);
-	color c;
-	c.ucRed = r;
-	c.ucGreen = g;
-	c.ucBlue = b;
-	return c;
-}
 void CFigure::ChngFillStts(bool isFilled)
 {
 	FigGfxInfo.isFilled = isFilled;
@@ -67,7 +34,7 @@ void CFigure::ChngFillStts(bool isFilled)
 void CFigure::seTDrawandFillClr(string drawColorString, string fill) // set the draw and fill color of the figure
 {
 	// Convert the drawColorString to a color and assign it to FigGfxInfo.DrawClr
-	ChngDrawClr(stringToColor(drawColorString));
+	ChngDrawClr(color::stringToColor(drawColorString));
 
 	// Check if the fill is "NO_FILL"
 	if (fill == "NO_FILL") {
@@ -77,7 +44,7 @@ void CFigure::seTDrawandFillClr(string drawColorString, string fill) // set the 
 	else
 	{
 		// Convert the fill to a color and assign it to FigGfxInfo.FillClr
-		ChngFillClr(stringToColor(fill));
+		ChngFillClr(color::stringToColor(fill));
 	}
 }
 void CFigure::Hide()
@@ -98,3 +65,6 @@ GfxInfo CFigure::GetGfxInfo()
 {
 	return FigGfxInfo;
 }
+
+void CFigure::move(int& dx, int& dy)
+{}

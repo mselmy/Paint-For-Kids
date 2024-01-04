@@ -30,7 +30,7 @@ void CCircle::Save(ofstream& OutFile)	//Save the figure parameters to the file
 	OutFile << endl << ITM_CIRC << "\t" << ID << "\t" << center.x << "\t" << center.y << "\t" << radius << "\t";
 	OutFile << "(" << (int)FigGfxInfo.DrawClr.ucRed << "," << (int)FigGfxInfo.DrawClr.ucGreen << "," << (int)FigGfxInfo.DrawClr.ucBlue << ")" << "\t";
 	if (FigGfxInfo.isFilled)
-		OutFile << FigGfxInfo.FillClr.ucRed << "\t" << FigGfxInfo.FillClr.ucGreen << "\t" << FigGfxInfo.FillClr.ucBlue << "\t";
+		OutFile << "(" << (int)FigGfxInfo.FillClr.ucRed << "," << (int)FigGfxInfo.FillClr.ucGreen << "," << (int)FigGfxInfo.FillClr.ucBlue << ")";
 	else
 		OutFile << "NO_FILL" << "\t";
 	OutFile << endl;
@@ -72,4 +72,16 @@ void CCircle::ActionResizeFigure(GUI* pGUI, float size) {
 		// Update the circle's properties
 		radius = newRadius;
 	}
+}
+
+void CCircle::move(int& dx, int& dy)
+{
+	//changing drawing point
+	center.x += dx;
+	center.y += dy;
+}
+
+int CCircle::type()
+{
+	return PCIRCLE;
 }

@@ -88,7 +88,7 @@ void ActionPickByType::Execute()
 	//for switching to draw mode
 	GUI* pGUI = pManager->GetGUI();
 	pGUI->ClearStatusBar();
-	if (pManager->IsAnyFigureSelected()) {//to make sure that there are figures selected
+	//if (pManager->IsAnyFigureSelected()) {//to make sure that there are figures selected
 		ActionType pAction;
 		//do {
 			//pGUI->CreatePlayToolBar();
@@ -220,7 +220,7 @@ void ActionPickByType::Execute()
 				pManager->DrawnFigs(i)->Show();
 			}
 		}
-		/*/else
+		else
 		{
 			pGUI->PrintMessage("You must have at least two types of figures to play ! ");
 		}
@@ -229,21 +229,10 @@ void ActionPickByType::Execute()
 		{
 			pManager->DrawnFigs(i)->Show();
 		}
-		pManager->UpdateInterface();
-		break;
-	case BACK:
-		//return back to draw mode
-		UI.InterfaceMode = MODE_DRAW;
-		pGUI->CreateDrawToolBar();
-		pGUI->PrintMessage("Back to draw mode!");
-		break;
-	}
-} while (pAction != BACK);
-}
-*/
-
-		else {
+	/*}
+	else
+	{
 			pGUI->PrintMessage("select at least 2 shapes");
-		}
 	}
+	*/
 }

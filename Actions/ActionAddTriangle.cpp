@@ -77,4 +77,5 @@ void ActionAddTriangle::Execute()
 
 	//Step 4 - Add the ellipse to the list of figures
 	pManager->AddFigure(T);
+	pManager->setSavedState(false);
 }

@@ -22,4 +22,5 @@ void Bring_to_Front::Execute()
 		pGUI->PrintMessage("Please, Select a figure");
 		pManager->Set_LastMessage("Please, Select a figure");
 	}
+	pManager->setSavedState(false);
 }

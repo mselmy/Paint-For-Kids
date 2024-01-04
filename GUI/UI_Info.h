@@ -29,6 +29,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_CLR,
 	ITM_BG,			//Change background color
 	ITM_FILL,		//Change shape filling
+	ITM_DRAG,		//Drag and drop
 	ITM_RESIZE,//Change shape color
 	ITM_SEND_TO_BACK,// Send_to_back
 	ITM_BRING_TO_FRONT,// brnig to front
@@ -65,6 +66,34 @@ enum ResizeMenueItems //items of resize menu
 	ITM_DOUBLE,
 	ITM_QUADRAPLE,
 	RESIZE_ITM_COUNT,
+};
+
+enum PlayColor //items of play color menu
+{
+	PWHITE,
+	PBLACK,
+	PBROWN,
+	PPURPLE,
+	PPINK,
+	PRED,
+	PORANGE,
+	PYELLOW,
+	PGREEN,
+	PBLUE,
+	PNOFILL,
+
+	PCOLORCOUNT
+};
+
+enum PlayShapes //items of play shapes menu
+{
+	PSQUARE,
+	PELLIPSE,
+	PHEXAGON,
+	PCIRCLE,
+	PTRIANGLE,
+
+	PSHAPECOUNT
 };
 
 

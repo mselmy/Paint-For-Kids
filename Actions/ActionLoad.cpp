@@ -11,18 +11,23 @@
 #include "../Figures/CEllipse.h"
 #include "../Figures/CTriangle.h"
 #include "../Figures/CHexagon.h"
+#include "../Actions/ActionSave.h"
 
 ActionLoad::ActionLoad(ApplicationManager* pApp) : Action(pApp)
 {}
 
 void ActionLoad::Execute()
 {
-
-	if (pManager->getFigCount() != 0)
-	{
-		if (pManager->WarningMessage("You didn't save your Drawings, Do you want to save them?\nClick yes to save\nClick no to continoue without saving") == -1)
+		int reply = pManager->WarningMessage("You didn't save your Drawings, Do you want to save them?\nClick yes to save\nClick no to continoue without saving");
+		if (reply == IDCANCEL)
 			return;
-	}
+		else if (reply == IDYES)
+		{
+			Action* newAct = new ActionSave(pManager);
+			pManager->ExecuteAction(newAct);
+			delete newAct;
+		}
+	
 
 	//Get a Pointer to the Interface
 	GUI* pGUI = pManager->GetGUI();
@@ -58,15 +63,16 @@ void ActionLoad::Execute()
 
 	//load data
 	string  drawColor, fillColor, bgColor;
-
 	inFile >> drawColor >> fillColor >> bgColor;//read header data
+	
 	//set current colors to GUI
-		
+	pGUI->setCrntDrawColor(color::stringToColor(drawColor));
+	pGUI->setCrntFillColor(color::stringToColor(fillColor));
+	pGUI->setCrntBackgroundColor(color::stringToColor(bgColor));
+
 	int figCount;
 	inFile >> figCount;//read fig count
 
-
-	//FigCount = figCount;//set fig count
 	//initialize paramters
 	int figType = -1;
 	CFigure* figure = nullptr;
@@ -84,7 +90,6 @@ void ActionLoad::Execute()
 
 	for (int i = 0; i < figCount; i++)
 	{
-
 		inFile >> figType;
 		switch (figType)
 		{

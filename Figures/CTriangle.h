@@ -24,6 +24,9 @@ public:
 	virtual void Save(ofstream& OutFile);	//Save the figure parameters to the file
 	virtual void Load(ifstream& Infile);	//Load the figure parameters to the file
 	void ActionResizeFigure(GUI* pGui, float size);// to resize the triangle
+	virtual void move(int& dx, int& dy);	//Move the figure
+	virtual int type();	//Return string of the figure type
+
 };
 
 #endif

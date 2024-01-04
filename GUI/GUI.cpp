@@ -7,7 +7,7 @@ GUI::GUI()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 
-	UI.width = 1300;
+	UI.width = 1380;
 	UI.height = 700;
 	UI.wx = 5;
 	UI.wy = 5;
@@ -20,7 +20,7 @@ GUI::GUI()
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
 	UI.MsgColor = RED;		//Messages color
-	UI.BkGrndColor = LIGHTGOLDENRODYELLOW;	//Background color
+	UI.BkGrndColor = WHITE;	//Background color
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = TURQUOISE;
 	UI.PenWidth = 3;	//width of the figures frames
@@ -106,6 +106,7 @@ ActionType GUI::MapInputToActionType() const
 			case ITM_PLAY:return TO_PLAY;
 			case ITM_CLR: return CHNG_DRAW_CLR;
 			case ITM_BG: return CHNG_BG_CLR;
+			case ITM_DRAG: return DRAG;
 			case ITM_FILL: return CHNG_FILL_CLR;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
@@ -233,6 +234,7 @@ void GUI::CreateDrawToolBar() const
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Del.jpg";
 	MenuItemImages[ITM_PLAY] = "images\\MenuItems\\PlayMode.jpg";
 	MenuItemImages[ITM_RESIZE] = "images\\MenuItems\\Menu_resize.jpg";
+	MenuItemImages[ITM_DRAG] = "images\\MenuItems\\Menu_Drag.jpg";
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
@@ -252,11 +254,11 @@ void GUI::CreatePlayToolBar() const
 	ClearToolBarArea();
 		UI.InterfaceMode = MODE_PLAY;
 		string PlayMenuImages[PLAY_ITM_COUNT];
-		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\pick_color.jpg";
+		PlayMenuImages[PLAY_TYPE] = "images\\MenuItems\\Menue_Shapes.jpg";
 		PlayMenuImages[PLAY_FILL] = "images\\MenuItems\\Menue_Colors.jpg";
-		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\typeandfill.jpg";
+		PlayMenuImages[PLAY_TYPEFILL] = "images\\MenuItems\\Menu_Type_Color.jpg";
 		//PlayMenuImages[PLAY_RESET] = "images\\MenuItems\\newgame.jpg";
-		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\back.jpeg";
+		PlayMenuImages[PLAY_BACK] = "images\\MenuItems\\Menu_Back.jpg";
 
 		//TODO: Prepare images for each menu item and add it to the list
 		//Draw menu item one image at a time
@@ -275,7 +277,7 @@ void GUI::CreateReSizeBar()const {
 	//create resize menue images
 	//define array (size is num of items).
 	string MenueResizeItemImages[RESIZE_ITM_COUNT];
-	MenueResizeItemImages[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
+	MenueResizeItemImages[ITM_BACK] = "images\\MenuItems\\Menu_Back.jpg";
 	MenueResizeItemImages[ITM_QUARTER] = "images\\MenuItems\\Menue_Quarter.jpg";
 	MenueResizeItemImages[ITM_HALF] = "images\\MenuItems\\Menue_Half.jpg";
 	MenueResizeItemImages[ITM_DOUBLE] = "images\\MenuItems\\Menue_Double.jpg";
@@ -290,23 +292,6 @@ void GUI::CreateReSizeBar()const {
 	pWind->SetPen(GREEN, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 }
-/*
-void GUI::CreatePlayToolBar() const//creation of play tool bar
-{
-	CreateToolBar();
-	UI.InterfaceMode = MODE_PLAY;
-	pWind->SetPen(PINK, 3);
-	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
-	string MenuePlayMode[PLAY_ITM_COUNT];
-	MenuePlayMode[ITM_BACK] = "images\\MenuItems\\Menue_Back.jpg";
-	MenuePlayMode[PICK_BY_TYPE] = "images\\MenuItems\\Menue_shapes.jpg";
-	for (int i = 0; i < PLAY_ITM_COUNT; i++) {
-		pWind->DrawImage(MenuePlayMode[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-	}
-
-
-
-}*/
 
 void GUI::CreateToolBar() const
 {
@@ -315,7 +300,6 @@ void GUI::CreateToolBar() const
 	pWind->DrawRectangle(0, 0, UI.width, UI.ToolBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
-
 void GUI::ClearDrawArea() const
 {
 	pWind->SetPen(UI.BkGrndColor, 1);
